@@ -14,4 +14,6 @@
     <string name="signup_username">User name (Optional)</string>
     <string name="auth_custom_input_above">Above</string>
     <string name="signup_email">Email</string>
+    <string name="later">Later</string>
+    <string name="create_an_account">Create an Account</string>
 </resources>

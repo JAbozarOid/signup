@@ -35,4 +35,8 @@
         <attr name="textInput" />
     </declare-styleable>
 
+    <declare-styleable name="CustomButtonWidget">
+        <attr name="text" format="string" />
+    </declare-styleable>
+
 </resources>
