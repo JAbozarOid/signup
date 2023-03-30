@@ -68,6 +68,7 @@
 
 
 
+
     <color name="success">#2E7D32</color>
     <color name="orange">#7E7D7D</color>
     <!--endregion-->
@@ -107,5 +108,16 @@
     <color name="errorContainer">@color/red600</color>
     <color name="onErrorContainer">@color/red300</color>
     <!--endregion-->
+
+    <!--region custom edit text widget -->
+    <color name="auth_red">#FF758B</color>
+    <color name="auth_gray">#92929D</color>
+    <color name="auth_blue_gray">#2D2D45</color>
+    <color name="auth_border_gray">#404060</color>
+    <color name="auth_cyan">#05FFE0</color>
+    <color name="auth_gray_light">#C6C6DA</color>
+    <color name="white6">#0FFFFFFF</color>
+    <color name="auth_green">#02F9AE</color>
+    <color name="auth_blue_gray54">#8D8D9A</color>
 
 </resources>
