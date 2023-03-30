@@ -5,4 +5,34 @@
         <attr name="rtl_menu" format="reference" />
     </declare-styleable>
 
+    <attr name="background" format="reference" />
+    <attr name="imageType" format="reference" />
+    <attr name="imageState" format="reference" />
+    <attr name="imageIcon" format="reference" />
+    <attr name="defaultIconColor" format="color" />
+
+    <attr name="inputType" format="enum">
+        <enum name="none" value="0" />
+        <enum name="email" value="1" />
+        <enum name="password" value="2" />
+        <enum name="text" value="3" />
+        <enum name="search" value="4" />
+        <enum name="empty" value="5" />
+        <enum name="textView" value="6" />
+        <enum name="number" value="7" />
+    </attr>
+
+    <attr name="hintText" format="string" />
+    <attr name="textInput" format="string" />
+
+    <declare-styleable name="CustomEditTextWidgetInput">
+        <attr name="background" />
+        <attr name="imageType" />
+        <attr name="imageState" />
+        <attr name="defaultIconColor" />
+        <attr name="inputType" />
+        <attr name="hintText" />
+        <attr name="textInput" />
+    </declare-styleable>
+
 </resources>
