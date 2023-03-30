@@ -10,4 +10,8 @@ import dagger.hilt.android.AndroidEntryPoint
 class SignupActivity :
     BaseActivity<ActivitySignupBinding, SignupViewModel>(R.layout.activity_signup) {
     override val viewModel: SignupViewModel by viewModels()
+
+    override fun onCreated() {
+        super.onCreated()
+    }
 }
