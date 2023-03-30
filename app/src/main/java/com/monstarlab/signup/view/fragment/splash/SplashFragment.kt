@@ -6,6 +6,7 @@ import com.monstarlab.signup.R
 import com.monstarlab.signup.command.NavigationCommand
 import com.monstarlab.signup.databinding.FragmentSplashBinding
 import com.monstarlab.signup.view.activity.MainActivity
+import com.monstarlab.signup.view.activity.SignupActivity
 import com.monstarlab.signup.view.fragment.BaseFragment
 import com.monstarlab.signup.viewModel.SplashViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -22,7 +23,8 @@ class SplashFragment :
         super.initLayout(view)
         viewModel.fire{
             delay(2000)
-            viewModel.navigationCommand.postValue(NavigationCommand.ToActivity(MainActivity::class.java, finishSourceActivity = true))
+            //viewModel.navigationCommand.postValue(NavigationCommand.ToActivity(MainActivity::class.java, finishSourceActivity = true))
+            viewModel.navigationCommand.postValue(NavigationCommand.ToActivity(SignupActivity::class.java, finishSourceActivity = true))
         }
     }
 
