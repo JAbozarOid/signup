@@ -9,81 +9,136 @@
             type="com.monstarlab.signup.viewModel.SignupViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="16dp">
+        android:fillViewport="true">
 
-        <ImageView
-            android:id="@+id/imgClose"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_close"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/later"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tvCreateAccount"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="36dp"
-            android:gravity="center"
-            android:text="@string/create_an_account"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-
-            app:layout_constraintTop_toBottomOf="@+id/imgClose" />
-
-        <com.monstarlab.signup.view.widget.edittext.CustomEditTextWidget
-            android:id="@+id/edtEmail"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:hintText="@string/signup_email"
-            app:imageType="@drawable/ic_auth_at"
-            app:inputType="email"
-            android:layout_marginTop="36dp"
-            app:background="@drawable/shape_state_success"
-            app:layout_constraintTop_toBottomOf="@+id/tvCreateAccount" />
+            android:layout_height="match_parent"
+            android:padding="16dp">
 
-        <com.monstarlab.signup.view.widget.edittext.CustomEditTextWidget
-            android:id="@+id/edtPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            app:background="@drawable/shape_state_success"
-            app:hintText="password"
-            app:imageType="@drawable/ic_auth_lock"
-            app:inputType="password"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edtEmail" />
+            <ImageView
+                android:id="@+id/imgClose"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_close"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <com.monstarlab.signup.view.widget.button.CustomButtonWidget
-            android:id="@+id/btnCreateAccount"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="36dp"
-            android:textSize="36sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edtPassword"
-            app:text="Create an Account" />
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/later"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvCreateAccount"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                android:gravity="center"
+                android:text="@string/create_an_account"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+
+                app:layout_constraintTop_toBottomOf="@+id/imgClose" />
+
+            <com.monstarlab.signup.view.widget.edittext.CustomEditTextWidget
+                android:id="@+id/edtEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                app:background="@drawable/shape_state_success"
+                app:hintText="@string/signup_email"
+                app:imageType="@drawable/ic_auth_at"
+                app:inputType="email"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvCreateAccount" />
+
+            <com.monstarlab.signup.view.widget.edittext.CustomEditTextWidget
+                android:id="@+id/edtPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                app:background="@drawable/shape_state_success"
+                app:hintText="password"
+                app:imageType="@drawable/ic_auth_lock"
+                app:inputType="password"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edtEmail" />
+
+            <com.monstarlab.signup.view.widget.button.CustomButtonWidget
+                android:id="@+id/btnCreateAccount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                android:textSize="36sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edtPassword"
+                app:text="Create an Account" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvAlreadyHaveAccount"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                android:gravity="center"
+                android:text="Already have an account?"
+                android:textColor="@color/base700"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btnCreateAccount" />
+
+            <View
+                android:id="@+id/line"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="36dp"
+                android:background="@color/base700"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvAlreadyHaveAccount" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnGoogle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                android:background="@drawable/shape_state_idle"
+                android:text="@string/continue_with_google"
+                app:layout_constraintTop_toBottomOf="@+id/line" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnFacebook"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/shape_state_idle"
+                android:text="@string/continue_with_facebook"
+                app:layout_constraintTop_toBottomOf="@+id/btnGoogle" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnApple"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/shape_state_idle"
+                android:text="@string/continue_with_apple"
+                app:layout_constraintTop_toBottomOf="@+id/btnFacebook" />
 
 
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
 </layout>
