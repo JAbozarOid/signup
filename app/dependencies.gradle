@@ -75,6 +75,7 @@ ext {
             .add("androidx.room:room-compiler:${dependencyVersions.room}", DependencyType.KAPT)
             .add("androidx.room:room-runtime:${dependencyVersions.room}",DependencyType.API)
             .add("androidx.room:room-ktx:${dependencyVersions.room}", DependencyType.API)
+            .add("junit:junit:4.13.2")
 
     //endregion
 
