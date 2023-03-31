@@ -22,6 +22,8 @@ import androidx.core.content.ContextCompat
 import androidx.core.widget.ImageViewCompat
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.hadilq.liveevent.LiveEvent
+import com.hadilq.liveevent.LiveEventConfig
 import com.monstarlab.signup.R
 import com.monstarlab.signup.extension.setEditTextAsTextView
 import com.monstarlab.signup.util.AuthUtil
@@ -72,10 +74,12 @@ class CustomEditTextWidget(context: Context, attributeSet: AttributeSet) :
 
     var text = ""
 
-    private val _textFocusLiveData: MutableLiveData<String> = MutableLiveData()
+    private val _textFocusLiveData: LiveEvent<String> =
+        LiveEvent(config = LiveEventConfig.PreferFirstObserver)
     val textFocusLiveData: LiveData<String> get() = _textFocusLiveData
 
-    private val _textLiveData: MutableLiveData<String> = MutableLiveData()
+    private val _textLiveData: LiveEvent<String> =
+        LiveEvent(config = LiveEventConfig.PreferFirstObserver)
     val textLiveData: LiveData<String> get() = _textLiveData
 
     private var numberInputType =
