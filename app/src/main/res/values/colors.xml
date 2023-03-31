@@ -119,5 +119,12 @@
     <color name="white6">#0FFFFFFF</color>
     <color name="auth_green">#02F9AE</color>
     <color name="auth_blue_gray54">#8D8D9A</color>
+    <!-- endregion custom edit text widget -->
+
+    <!-- region custom button -->
+    <color name="auth_idle">#FDD30B</color>
+    <color name="app_black">#151523</color>
+    <color name="auth_black24">#C7C7CA</color>
+    <color name="auth_gray12">#F2F2F3</color>
 
 </resources>
