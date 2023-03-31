@@ -1,9 +1,10 @@
 package com.monstarlab.signup.viewModel
 
+import androidx.lifecycle.viewModelScope
 import com.hadilq.liveevent.LiveEvent
 import com.hadilq.liveevent.LiveEventConfig
-import com.monstarlab.data.repository.SingupRepository
 import com.monstarlab.data.util.ApiResponse
+import com.monstarlab.data.util.NetworkUtil.genericRequestCollect
 import com.monstarlab.domain.usecase.SignupUseCase
 import com.monstarlab.signup.constants.TextConstant.EMAIL_IS_EMPTY
 import com.monstarlab.signup.constants.TextConstant.EMAIL_IS_IN_CORRECT
@@ -11,13 +12,11 @@ import com.monstarlab.signup.constants.TextConstant.PASSWORD_IS_EMPTY
 import com.monstarlab.signup.constants.TextConstant.PASSWORD_REGEX
 import com.monstarlab.signup.util.AuthUtil
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.delay
 import javax.inject.Inject
 
 @HiltViewModel
-class SignupViewModel @Inject constructor() : BaseViewModel() {
-
-    //private lateinit var mNetworkListener: NetworkListener
-
+class SignupViewModel @Inject constructor(var signupUseCase: SignupUseCase) : BaseViewModel() {
 
     var emailErrorSignup: LiveEvent<String> =
         LiveEvent(config = LiveEventConfig.PreferFirstObserver)
@@ -113,12 +112,14 @@ class SignupViewModel @Inject constructor() : BaseViewModel() {
 
     }
 
-    fun requestSignupData(email: String, password: String) {
-       /* genericRequestCollect(
+    suspend fun requestSignupData(email: String, password: String) {
+        /*genericRequestCollect(
             body = { signupUseCase.execute(Unit) as ApiResponse<String> },
             viewModelScope
         ) {
             signupResData.postValue(it)
         }*/
+
+        signupResData.postValue(ApiResponse.Success("navigate to main activity"))
     }
 }

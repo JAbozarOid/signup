@@ -1,4 +1,3 @@
-/*
 package com.monstarlab.data.util
 
 import android.annotation.SuppressLint
@@ -20,11 +19,9 @@ class NetworkListener @Inject constructor() :
         networkMonitor()
     }
 
-    */
-/*
+    /*
         todo: make it false later after test
-     *//*
-
+     */
     var isConnected = true
 
     @SuppressLint("CheckResult")
@@ -49,4 +46,3 @@ class NetworkListener @Inject constructor() :
     }
 
 }
-*/

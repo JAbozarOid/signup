@@ -15,6 +15,5 @@ import javax.inject.Singleton
 abstract class RepositoryModule {
 
     @Binds
-    @Singleton
-    abstract fun bindDataStore(dataStore: SingupRepository) : ISignupRepository
+    abstract fun bindSignupRepository(signupRepository: SingupRepository) : ISignupRepository
 }

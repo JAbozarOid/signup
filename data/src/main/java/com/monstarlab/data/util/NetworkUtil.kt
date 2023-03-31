@@ -44,13 +44,11 @@ object NetworkUtil {
 
     inline fun <T> genericRequestCollect(
         crossinline body: suspend () -> ApiResponse<T>,
-
         coroutineScope: CoroutineScope,
         crossinline collectFunction: (ApiResponse<T>) -> Unit
     ) = coroutineScope.launch(Dispatchers.IO) {
         flowResponse(
             body = body,
-
         ).collect {
             collectFunction(it)
         }
@@ -58,7 +56,6 @@ object NetworkUtil {
 
     inline fun <T> flowResponse(
         crossinline body: suspend () -> ApiResponse<T>,
-
     ) = flow {
         if (true) {
             emit(ApiResponse.Loading())

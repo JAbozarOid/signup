@@ -2,8 +2,9 @@ package com.monstarlab.signup.di.module
 
 import com.monstarlab.data.BuildConfig
 import com.monstarlab.data.api.RetrofitHelper
-import com.monstarlab.domain.enums.InfoType
+import com.monstarlab.data.api.SignupApi
 import dagger.Module
+import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import okhttp3.Interceptor
@@ -14,19 +15,18 @@ import java.util.*
 @InstallIn(SingletonComponent::class)
 class NetworkModule {
 
+    @Provides
     fun provideRetrofit(
-        infoMap: Map<InfoType, String>,
-        interceptorsMap: Map<Int, @JvmSuppressWildcards Interceptor>
+        //interceptorsMap: Map<Int, @JvmSuppressWildcards Interceptor>
     ): Retrofit {
-
         return RetrofitHelper.createRetrofit(
-            BuildConfig.BASE_URL,
-            headerMap = infoMap.mapKeys {
-                it.key.name.replace("_", "").lowercase(Locale.CANADA)
-            },
-            interceptorMap = interceptorsMap
+            "https://truecaller.blog/2018/01/22/",
+            //interceptorMap = interceptorsMap
         )
-
     }
 
+    @Provides
+    fun provideSignupApi(retroFit: Retrofit): SignupApi {
+        return retroFit.create(SignupApi::class.java)
+    }
 }
