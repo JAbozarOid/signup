@@ -1,0 +1,120 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'dagger.hilt.android.plugin'
+
+def config = rootProject.extensions.getByName("ext")
+
+
+android {
+
+//    signingConfigs{
+//
+//        release{
+//            storeFile file("$project.rootDir/config/signapk.jks")
+//            storePassword 'sweet'
+//            keyAlias = 'amir_sweet'
+//            keyPassword = 'sweet0021477191'
+//        }
+//
+//    }
+
+    compileSdkVersion config.android.compileSdkVersion
+    buildToolsVersion config.android.buildToolsVersion
+
+    defaultConfig {
+        applicationId config.android.applicationId
+        minSdkVersion config.android.minSdkVersion
+        multiDexEnabled config.android.multiDexEnabled
+        targetSdkVersion config.android.targetSdkVersion
+        versionCode config.android.versionCode
+        versionName config.android.versionName
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+//        vectorDrawables {
+//            useSuppotedLibrary true
+//        }
+
+        buildConfigField "String", "VERSION_NAME", "\"$versionName\""
+        buildConfigField "Integer", "VERSION_CODE", "$versionCode"
+
+    }
+
+//    buildTypes {
+//        release {
+//            minifyEnabled false
+//            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+//        }
+//        debug {
+//            minifyEnabled false
+//            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+//        }
+//    }
+
+
+    buildFeatures {
+        dataBinding true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8
+    }
+
+    dataBinding {
+        enabled = true
+    }
+
+//    flavorDimensions 'market', 'host'
+//    productFlavors {
+//
+//        Bazaar {
+//            dimension = 'market'
+//            buildConfigField "String", "MARKET", "\"bazzar\""
+//            buildConfigField "String", "TRACKER_TOKEN", "\"\""
+//        }
+//
+//        Production {
+//            dimension = 'host'
+//        }
+//
+//        Development {
+//            dimension = 'host'
+//        }
+//
+//    }
+//    applicationVariants.all{ variant->
+//        variant.output.all{
+//            def flavor = varient.name
+//            def versionName = varient.versionName
+//            outputFileName = "routine_${flavor}_${versionName}.apk"
+//        }
+//    }
+
+}
+
+
+dependencies {
+    def moduleName = project.name
+    println("\r\n ---- $moduleName module dependencies -------")
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+
+    config.presentationDep.get().forEach {
+        println("${it}")
+        add("${it.type}", it.url)
+    }
+
+    api project(path: ':domain')
+    api project(path: ':data')
+
+}
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}

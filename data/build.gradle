@@ -1,0 +1,87 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+}
+
+def config = rootProject.extensions.getByName("ext")
+
+
+android {
+
+    compileSdkVersion config.android.compileSdkVersion
+
+    defaultConfig {
+
+        minSdkVersion config.android.minSdkVersion
+        targetSdkVersion config.android.targetSdkVersion
+        multiDexEnabled config.android.multiDexEnabled
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+
+        buildConfigField "String", "VERSION_NAME", "\"$versionName\""
+        buildConfigField "Integer", "VERSION_CODE", "$versionCode"
+        buildConfigField "String", "BASE_URL", "\"test\""
+
+    }
+
+
+//    buildTypes {
+//
+//        release {
+//            minifyEnabled false
+//            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+//        }
+//
+//        debug {
+//            minifyEnabled false
+//            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+//        }
+//
+//    }
+
+
+//    flavorDimensions 'host'
+//
+//
+//    productFlavors {
+//
+//        Development {
+//            dimension = 'host'
+//        }
+//
+//        Production {
+//            dimension = 'host'
+//        }
+//
+//    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    dataBinding {
+        enabled true
+    }
+
+}
+
+dependencies {
+
+    def moduleName = project.name
+    println("\r\n ---- $moduleName module dependencies -------")
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+
+    implementation project(path: ':domain')
+
+    config.dataDep.get().forEach {
+        println("${it}")
+        add("${it.type}", it.url)
+    }
+
+}

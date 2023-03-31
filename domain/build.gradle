@@ -1,0 +1,30 @@
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+        maven { url 'repo1.maven.org/maven2' }
+    }
+}
+plugins {
+    id 'java-library'
+    id 'org.jetbrains.kotlin.jvm'
+    id 'kotlin-kapt'
+}
+
+def config = rootProject.extensions.getByName("ext")
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+dependencies {
+    
+    def moduleName = project.name
+    println("\r\n ---- $moduleName module dependencies -------")
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+
+    config.domainDep.get().forEach {
+        println("${it}")
+        add("${it.type}", it.url)
+    }
+
+}

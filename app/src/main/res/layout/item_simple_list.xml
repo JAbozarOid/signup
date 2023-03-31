@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="2dp">
+
+    <com.google.android.material.button.MaterialButton
+        android:enabled="false"
+        style="@style/Widget.Material3.Button.IconButton"
+        app:iconTint="?attr/colorOutline"
+        android:id="@+id/icon"
+        android:layout_width="46dp"
+        android:layout_height="46dp"
+        app:icon="@drawable/ic_person_outline"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@id/title"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/title"
+        app:tint="?attr/colorOutline" />
+
+    <com.google.android.material.button.MaterialButton
+        android:enabled="false"
+        android:textAppearance="@style/TextAppearance.Material3.TitleSmall"
+        style="@style/Widget.Material3.Button.TextButton"
+        android:text="@string/profile"
+        android:id="@+id/title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="2dp"
+        android:gravity="center|right"
+        android:padding="10dp"
+        android:textColor="?attr/colorOutline"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/icon"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

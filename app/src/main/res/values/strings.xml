@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Monstarlab</string>
+    <string name="home">خانه</string>
+    <string name="vision">دیده‌بان</string>
+    <string name="portfolio">پورتفو</string>
+    <string name="search">جستجو</string>
+    <string name="orders">سفارشات</string>
+    <string name="profile">حساب کاربری</string>
+    <string name="sign_in_report">گزارش ورود و خروج</string>
+    <string name="setting">تنظیمات</string>
+    <string name="support">پشتیبانی</string>
+    <string name="logout">خروج از حساب</string>
+</resources>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--region pallet-->
+    <color name="blue50">#e7eaf5</color>
+    <color name="blue100">#c1cbe7</color>
+    <color name="blue200">#98a9d6</color>
+    <color name="blue300">#6f88c6</color>
+    <color name="blue400">#4d6eba</color>
+    <color name="blue500">#2355af</color>
+    <color name="blue600">#1c4ea6</color>
+    <color name="blue700">#0d449a</color>
+    <color name="blue800">#003a8e</color>
+    <color name="blue900">#002978</color>
+
+    <color name="base50">#ffffff</color>
+    <color name="base100">#fafafa</color>
+    <color name="base200">#f5f5f5</color>
+    <color name="base300">#f0f0f0</color>
+    <color name="base400">#dedede</color>
+    <color name="base500">#c2c2c2</color>
+    <color name="base600">#979797</color>
+    <color name="base700">#818181</color>
+    <color name="base800">#606060</color>
+    <color name="base900">#3c3c3c</color>
+
+    <color name="orange50">#faeae7</color>
+    <color name="orange100">#fdcebd</color>
+    <color name="orange200">#fcae93</color>
+    <color name="orange300">#fb8f67</color>
+    <color name="orange400">#fa7845</color>
+    <color name="orange500">#f96225</color>
+    <color name="orange600">#ee5c21</color>
+    <color name="orange700">#e0551c</color>
+    <color name="orange800">#d24e19</color>
+    <color name="orange900">#b94212</color>
+
+
+    <color name="green50">#e5f9eb</color>
+    <color name="green100">#bfefcd</color>
+    <color name="green200">#93e5ad</color>
+    <color name="green300">#5ddc8b</color>
+    <color name="green400">#19d270</color>
+    <color name="green500">#00c954</color>
+    <color name="green600">#00b949</color>
+    <color name="green700">#00a63c</color>
+    <color name="green800">#009430</color>
+    <color name="green900">#00741b</color>
+
+
+    <color name="navy">#1e1e2f</color>
+
+    <color name="black">#000000</color>
+
+    <color name="white1">#CDCDCD</color>
+    <color name="white2">#ffffff</color>
+
+    <color name="red50">#fdeaee</color>
+    <color name="red100">#fbcad2</color>
+    <color name="red200">#ea959b</color>
+    <color name="red300">#de6c74</color>
+    <color name="red400">#e84853</color>
+    <color name="red500">#ed323b</color>
+    <color name="red600">#de2839</color>
+    <color name="red700">#cc1d33</color>
+    <color name="red800">#bf152c</color>
+    <color name="red900">#b00020</color>
+
+
+
+    <color name="success">#2E7D32</color>
+    <color name="orange">#7E7D7D</color>
+    <!--endregion-->
+
+    <!--region application colors-->
+
+    <color name="primary">@color/blue600</color>
+    <color name="primaryVariant">@color/blue800</color>
+    <color name="onPrimary">@color/base50</color>
+    <color name="primaryContainer">@color/blue300</color>
+    <color name="onPrimaryContainer">@color/blue500</color>
+
+    <color name="secondary">@color/green600</color>
+    <color name="secondaryVariant">@color/green800</color>
+    <color name="onSecondary">@color/base100</color>
+    <color name="secondaryContainer">@color/green300</color>
+    <color name="onSecondaryContainer">@color/black</color>
+
+    <color name="tertiary">@color/orange800</color>
+    <color name="onTertiary">@color/white1</color>
+    <color name="tertiaryContainer">@color/orange400</color>
+    <color name="onTertiaryContainer">@color/orange700</color>
+
+    <color name="background">@color/white2</color>
+    <color name="onBackground">@color/black</color>
+
+    <color name="surface">@color/base200</color>
+    <color name="surfaceVariant">@color/base300</color>
+    <color name="onSurfaceVariant">@color/base900</color>
+    <color name="onSurface">@color/base800</color>
+
+    <color name="transparent">#00FFFFFF</color>
+    <color name="loadingBackground">#279C9C9C</color>
+
+    <color name="error">@color/red900</color>
+    <color name="onError">@color/red50</color>
+    <color name="errorContainer">@color/red600</color>
+    <color name="onErrorContainer">@color/red300</color>
+    <!--endregion-->
+
+</resources>

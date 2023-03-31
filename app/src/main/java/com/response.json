@@ -1,0 +1,148 @@
+{
+  "response1": {
+    "error": {
+      "code": "400",
+      "message": "user not exists"
+    }
+  },
+  "response2": {
+    "data": {
+      "results": [
+        {
+          "gender": "female",
+          "name": {
+            "title": "Miss",
+            "first": "Edeltrud",
+            "last": "Süß"
+          },
+          "location": {
+            "street": {
+              "number": 405,
+              "name": "Friedhofstraße"
+            },
+            "city": "Lengenfeld",
+            "state": "Bayern",
+            "country": "Germany",
+            "postcode": 65884,
+            "coordinates": {
+              "latitude": "-38.6984",
+              "longitude": "32.3549"
+            },
+            "timezone": {
+              "offset": "+5:00",
+              "description": "Ekaterinburg, Islamabad, Karachi, Tashkent"
+            }
+          },
+          "email": "edeltrud.suss@example.com",
+          "login": {
+            "uuid": "3e0b0571-9184-43d4-819f-65089351879d",
+            "username": "yellowgorilla423",
+            "password": "mancity",
+            "salt": "hGtl2rrf",
+            "md5": "b3728d1159396e16ef61b4389d6e28db",
+            "sha1": "72edb685f80a92220741e300149e832402fef31b",
+            "sha256": "6059ce5ed4f6e06ecb69bafaabbc5c64d87fe37e77b0c2dd56c3eb57d3e03eb7"
+          },
+          "dob": {
+            "date": "1946-04-27T18:36:17.032Z",
+            "age": 76
+          },
+          "registered": {
+            "date": "2011-06-03T07:16:59.665Z",
+            "age": 11
+          },
+          "phone": "0230-5468392",
+          "cell": "0178-0534220",
+          "id": {
+            "name": "",
+            "value": null
+          },
+          "picture": {
+            "large": "https://randomuser.me/api/portraits/women/60.jpg",
+            "medium": "https://randomuser.me/api/portraits/med/women/60.jpg",
+            "thumbnail": "https://randomuser.me/api/portraits/thumb/women/60.jpg"
+          },
+          "nat": "DE"
+        }
+      ],
+      "info": {
+        "seed": "95ec810ef473c279",
+        "results": 1,
+        "page": 1,
+        "version": "1.3"
+      }
+    },
+    "error": {
+      "code": "400",
+      "message": "user not exists"
+    }
+  },
+  "response3": {
+    "data": {
+      "results": [
+        {
+          "gender": "female",
+          "name": {
+            "title": "Miss",
+            "first": "Edeltrud",
+            "last": "Süß"
+          },
+          "location": {
+            "street": {
+              "number": 405,
+              "name": "Friedhofstraße"
+            },
+            "city": "Lengenfeld",
+            "state": "Bayern",
+            "country": "Germany",
+            "postcode": 65884,
+            "coordinates": {
+              "latitude": "-38.6984",
+              "longitude": "32.3549"
+            },
+            "timezone": {
+              "offset": "+5:00",
+              "description": "Ekaterinburg, Islamabad, Karachi, Tashkent"
+            }
+          },
+          "email": "edeltrud.suss@example.com",
+          "login": {
+            "uuid": "3e0b0571-9184-43d4-819f-65089351879d",
+            "username": "yellowgorilla423",
+            "password": "mancity",
+            "salt": "hGtl2rrf",
+            "md5": "b3728d1159396e16ef61b4389d6e28db",
+            "sha1": "72edb685f80a92220741e300149e832402fef31b",
+            "sha256": "6059ce5ed4f6e06ecb69bafaabbc5c64d87fe37e77b0c2dd56c3eb57d3e03eb7"
+          },
+          "dob": {
+            "date": "1946-04-27T18:36:17.032Z",
+            "age": 76
+          },
+          "registered": {
+            "date": "2011-06-03T07:16:59.665Z",
+            "age": 11
+          },
+          "phone": "0230-5468392",
+          "cell": "0178-0534220",
+          "id": {
+            "name": "",
+            "value": null
+          },
+          "picture": {
+            "large": "https://randomuser.me/api/portraits/women/60.jpg",
+            "medium": "https://randomuser.me/api/portraits/med/women/60.jpg",
+            "thumbnail": "https://randomuser.me/api/portraits/thumb/women/60.jpg"
+          },
+          "nat": "DE"
+        }
+      ],
+      "info": {
+        "seed": "95ec810ef473c279",
+        "results": 1,
+        "page": 1,
+        "version": "1.3"
+      }
+    }
+  }
+}

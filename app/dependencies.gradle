@@ -1,0 +1,160 @@
+ext {
+//region android
+    android = [
+            applicationId    : "com.example.routine",
+            buildToolsVersion: "30.0.2",
+            minSdkVersion    : 21,
+            compileSdkVersion: 32,
+            targetSdkVersion : 32,
+            versionCode      : 1,
+            versionName      : "1.0.0",
+            multiDexEnabled  : true
+    ]
+    //endregion
+
+    //region dependencyVersion
+    dependencyVersions = [
+            "kotlin_version"       : "1.4.21",
+            "coroutines"           : "1.6.4",
+            "navVersion"           : "2.3.5",
+            "material"             : "1.6.1",
+            "gson"                 : "2.8.9",
+            "retrofit2Gson"        : "2.6.2",
+            "retrofit"             : "2.3.0",
+            "loggingInterceptor"   : "4.9.3",
+            "lottie"               : "3.4.0",
+            "room"                 : "2.1.0",
+            "dataSource"           : "1.0.0",
+            "hilt_testing"         : "2.38.1",
+            "hilt_compiler_testing": "2.38.1",
+            "hilt"                 : "2.38.1",
+    ]
+    //endregion
+
+    commonDep = new DependencyList()
+            .add("org.jetbrains.kotlin:kotlin-stdlib:${dependencyVersions.kotlin_version}")
+            .add("org.jetbrains.kotlinx:kotlinx-coroutines-android:${dependencyVersions.coroutines}")
+            .add("com.google.code.gson:gson:${dependencyVersions.gson}")
+
+    //region common
+
+
+    //endregion
+
+    //region domain
+    domainDep = new DependencyList(commonDep)
+    //endregion
+
+    //region data
+    dataDep = new DependencyList(commonDep)
+            .add("com.squareup.retrofit2:converter-gson:${dependencyVersions.retrofit2Gson}")
+            .add("com.squareup.retrofit2:retrofit:2.3.0${dependencyVersions.retrofit}")
+            .add("androidx.datastore:datastore-preferences:${dependencyVersions.dataSource}")
+            .add("com.squareup.okhttp3:logging-interceptor:${dependencyVersions.loggingInterceptor}")
+            .add("androidx.room:room-compiler:${dependencyVersions.room}", DependencyType.KAPT)
+            .add("androidx.room:room-runtime:${dependencyVersions.room}",DependencyType.API)
+            .add("androidx.room:room-ktx:${dependencyVersions.room}", DependencyType.API)
+            .add("com.google.dagger:hilt-android-testing:${dependencyVersions.hilt_testing}", DependencyType.TEST)
+            .add("com.google.dagger:hilt-android:${dependencyVersions.hilt}")
+            .add("com.google.dagger:hilt-compiler:${dependencyVersions.hilt}", DependencyType.KAPT)
+
+    //endregion
+
+    //region presentation
+    presentationDep = new DependencyList(commonDep)
+            .add("androidx.navigation:navigation-fragment-ktx:${dependencyVersions.navVersion}")
+            .add("androidx.navigation:navigation-ui-ktx:${dependencyVersions.navVersion}")
+            .add("androidx.navigation:navigation-dynamic-features-fragment:${dependencyVersions.navVersion}")
+            .add("com.airbnb.android:lottie:${dependencyVersions.lottie}")
+            .add("com.google.android.material:material:${dependencyVersions.material}")
+            .add("com.google.dagger:hilt-android:${dependencyVersions.hilt}")
+            .add("com.google.dagger:hilt-compiler:${dependencyVersions.hilt}", DependencyType.KAPT)
+            .add("com.squareup.retrofit2:converter-gson:${dependencyVersions.retrofit2Gson}")
+            .add("com.squareup.retrofit2:retrofit:${dependencyVersions.retrofit}")
+            .add("androidx.room:room-compiler:${dependencyVersions.room}", DependencyType.KAPT)
+            .add("androidx.room:room-runtime:${dependencyVersions.room}",DependencyType.API)
+            .add("androidx.room:room-ktx:${dependencyVersions.room}", DependencyType.API)
+    //endregion
+
+}
+
+//region dependencies helper
+enum DependencyType {
+    API("api"),
+    IMPLEMENTATION("implementation"),
+    TEST("testImplementation"),
+    ANDROID_TEST("androidTestImplementation"),
+    ANNOTATION("annotationProcessor"),
+    KAPT("kapt"),
+    KAPT_TEST("kaptTest"),
+    KAPT_ANDROID_TEST("kaptAndroidTest")
+
+
+    private final String value
+
+    DependencyType(String value) {
+        this.value = value
+    }
+
+    @Override
+    String toString() {
+        return this.value
+    }
+}
+
+class DependencyItem {
+
+    public DependencyType type
+    public String url
+
+    DependencyItem(String url, DependencyType type) {
+        this.url = url
+        this.type = type
+    }
+
+    DependencyItem(String url) {
+        this.url = url
+        this.type = DependencyType.IMPLEMENTATION
+    }
+
+    @Override
+    String toString() {
+        return "|- ${type} >> ${url} "
+    }
+}
+
+class DependencyList {
+    private HashSet<DependencyItem> dependencies = new HashSet<>();
+
+    DependencyList() {
+
+    }
+
+    DependencyList(DependencyList list) {
+        dependencies.addAll(list.get().toArray())
+    }
+
+    DependencyList add(String url) {
+        dependencies.add(new DependencyItem(url))
+        return this
+    }
+
+    DependencyList add(String url, DependencyType type) {
+        dependencies.add(new DependencyItem(url, type))
+        return this
+    }
+
+    List<DependencyItem> get() {
+        return dependencies.sort { item ->
+            DependencyType type = item.type
+            switch (type) {
+                case DependencyType.IMPLEMENTATION: return -1
+                case DependencyType.ANNOTATION: return 0
+                default: 1
+            }
+        }.toList()
+    }
+}
+
+
+//endregion
