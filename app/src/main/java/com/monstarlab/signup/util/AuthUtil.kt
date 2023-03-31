@@ -48,6 +48,10 @@ object AuthUtil {
                         || checkboxState == AuthCheckBoxState.UNCHECKED)
     }
 
+    fun isEmailAndPasswordFilled(email: String, password: String): Boolean {
+        return !(email.isEmpty() || password.isEmpty())
+    }
+
     // this method just check emptiness
     fun isUsernameValid(username: String): Boolean {
         return Pattern.compile(
