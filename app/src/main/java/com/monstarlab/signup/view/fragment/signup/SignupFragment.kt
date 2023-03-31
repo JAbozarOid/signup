@@ -1,15 +1,19 @@
 package com.monstarlab.signup.view.fragment.signup
 
+import android.content.Intent
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.monstarlab.data.util.ApiResponse
 import com.monstarlab.signup.R
+import com.monstarlab.signup.command.NavigationCommand
 import com.monstarlab.signup.databinding.FragmentSignupBinding
+import com.monstarlab.signup.view.activity.MainActivity
 import com.monstarlab.signup.view.fragment.BaseFragment
 import com.monstarlab.signup.viewModel.SignupViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.layout_loading.view.*
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 
@@ -57,6 +61,8 @@ class SignupFragment :
     private fun requestSignupData(email: String, password: String) {
         // call api
         lifecycleScope.launch {
+            showMainLoadingState()
+            delay(2000)
             viewModel.requestSignupData(email = email, password = password)
         }
     }
@@ -65,28 +71,35 @@ class SignupFragment :
         viewModel.signupResData.observe(viewLifecycleOwner) {
             when (it) {
                 is ApiResponse.Error -> {
+                    Toast.makeText(context,"Error", Toast.LENGTH_LONG).show()
                     hideMainLoadingState()
                 }
                 is ApiResponse.ErrorTryAgain -> {
-
+                    Toast.makeText(context,"Error", Toast.LENGTH_LONG).show()
+                    hideMainLoadingState()
                 }
                 is ApiResponse.Loading -> {
                     showMainLoadingState()
                 }
-                is ApiResponse.Success -> TODO()
+                is ApiResponse.Success -> {
+                    Toast.makeText(context,"Success", Toast.LENGTH_LONG).show()
+                    hideMainLoadingState()
+                    val intent = Intent(activity,MainActivity::class.java)
+                    activity?.startActivity(intent)
+                }
             }
         }
     }
 
     private fun showMainLoadingState() {
-        if (viewBinding.layoutLoading.cns_loading?.visibility != View.VISIBLE) {
-            viewBinding.layoutLoading.cns_loading?.visibility = View.VISIBLE
+        if (viewBinding.loading.visibility != View.VISIBLE) {
+            viewBinding.loading.visibility = View.VISIBLE
             viewBinding.btnCreateAccount.visibility = View.INVISIBLE
         }
     }
 
     private fun hideMainLoadingState() {
-        viewBinding.layoutLoading.cns_loading?.visibility = View.INVISIBLE
+        viewBinding.loading.visibility = View.INVISIBLE
         viewBinding.btnCreateAccount.visibility = View.VISIBLE
     }
 

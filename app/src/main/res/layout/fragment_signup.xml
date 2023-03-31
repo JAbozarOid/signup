@@ -136,9 +136,18 @@
                 android:text="@string/continue_with_apple"
                 app:layout_constraintTop_toBottomOf="@+id/btnFacebook" />
 
-            <include
-                android:id="@+id/layout_loading"
-                layout="@layout/layout_loading" />
+            <ProgressBar
+                android:id="@+id/loading"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_gravity="center"
+                android:theme="@style/progressBarWhite"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>

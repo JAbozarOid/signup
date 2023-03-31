@@ -1,16 +1,12 @@
 package com.monstarlab.data.api
 
-import com.monstarlab.data.entity.SignupModel
-import retrofit2.http.Field
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.POST
+import retrofit2.http.GET
 
 interface SignupApi {
 
-    @FormUrlEncoded
-    @POST("v1/signup")
+    @GET("life-as-an-android-engineer")
     suspend fun postSignup(
-        @Field("email") email: String,
-        @Field("password") password: String,
-    ): SignupModel
+        //@Field("email") email: String,
+        // @Field("password") password: String,
+    ): String
 }

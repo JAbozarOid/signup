@@ -4,29 +4,29 @@
         android:id="@+id/searchHomeFragment"
         android:enabled="true"
         android:icon="@drawable/state_search"
-        android:title="@string/search"/>
+        android:title="search"/>
     <item
         android:checked="false"
         android:id="@+id/orderHomeFragment"
         android:enabled="true"
         android:icon="@drawable/state_order"
-        android:title="@string/orders"/>
+        android:title="orders"/>
     <item
         android:checked="false"
         android:id="@+id/portfolioHomeFragment"
         android:enabled="true"
         android:icon="@drawable/state_portfolio"
-        android:title="@string/portfolio"/>
+        android:title="portfolio"/>
     <item
         android:checked="false"
         android:id="@+id/visionHomeFragment"
         android:enabled="true"
         android:icon="@drawable/state_eye"
-        android:title="@string/vision"/>
+        android:title="vision"/>
     <item
         android:checked="true"
         android:id="@+id/homeFragment"
         android:enabled="true"
         android:icon="@drawable/state_home"
-        android:title="@string/home"/>
+        android:title="home"/>
 </menu>

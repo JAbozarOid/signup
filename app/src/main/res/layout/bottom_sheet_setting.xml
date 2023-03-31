@@ -24,7 +24,6 @@
                 android:layout_height="wrap_content">
 
                 <com.monstarlab.signup.view.widget.simplelistwidget.SimpleListWidget
-                    list_data="@{viewModel.settingItems}"
                     android:id="@+id/list"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
