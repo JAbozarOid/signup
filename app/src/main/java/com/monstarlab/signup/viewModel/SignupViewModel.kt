@@ -1,8 +1,10 @@
 package com.monstarlab.signup.viewModel
 
-import androidx.lifecycle.MutableLiveData
 import com.hadilq.liveevent.LiveEvent
 import com.hadilq.liveevent.LiveEventConfig
+import com.monstarlab.data.repository.SingupRepository
+import com.monstarlab.data.util.ApiResponse
+import com.monstarlab.domain.usecase.SignupUseCase
 import com.monstarlab.signup.constants.TextConstant.EMAIL_IS_EMPTY
 import com.monstarlab.signup.constants.TextConstant.EMAIL_IS_IN_CORRECT
 import com.monstarlab.signup.constants.TextConstant.PASSWORD_IS_EMPTY
@@ -14,9 +16,15 @@ import javax.inject.Inject
 @HiltViewModel
 class SignupViewModel @Inject constructor() : BaseViewModel() {
 
+    //private lateinit var mNetworkListener: NetworkListener
+
+
     var emailErrorSignup: LiveEvent<String> =
         LiveEvent(config = LiveEventConfig.PreferFirstObserver)
     var passwordErrorSignup: LiveEvent<String> =
+        LiveEvent(config = LiveEventConfig.PreferFirstObserver)
+
+    var signupResData: LiveEvent<ApiResponse<String>> =
         LiveEvent(config = LiveEventConfig.PreferFirstObserver)
 
     fun isEmailAndPasswordFilled(
@@ -103,5 +111,14 @@ class SignupViewModel @Inject constructor() : BaseViewModel() {
             }
         }
 
+    }
+
+    fun requestSignupData(email: String, password: String) {
+       /* genericRequestCollect(
+            body = { signupUseCase.execute(Unit) as ApiResponse<String> },
+            viewModelScope
+        ) {
+            signupResData.postValue(it)
+        }*/
     }
 }

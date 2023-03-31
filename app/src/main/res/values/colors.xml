@@ -126,5 +126,9 @@
     <color name="app_black">#151523</color>
     <color name="auth_black24">#C7C7CA</color>
     <color name="auth_gray12">#F2F2F3</color>
+    <!-- endregion -->
+
+    <!-- region loading-->
+    <color name="details_chart_loading">#A5151523</color>
 
 </resources>
