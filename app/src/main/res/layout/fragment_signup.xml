@@ -136,7 +136,9 @@
                 android:text="@string/continue_with_apple"
                 app:layout_constraintTop_toBottomOf="@+id/btnFacebook" />
 
-
+            <include
+                android:id="@+id/layout_loading"
+                layout="@layout/layout_loading" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </ScrollView>

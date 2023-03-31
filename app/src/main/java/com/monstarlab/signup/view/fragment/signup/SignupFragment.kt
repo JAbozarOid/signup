@@ -1,14 +1,16 @@
 package com.monstarlab.signup.view.fragment.signup
 
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import com.monstarlab.data.util.ApiResponse
 import com.monstarlab.signup.R
 import com.monstarlab.signup.databinding.FragmentSignupBinding
 import com.monstarlab.signup.view.fragment.BaseFragment
 import com.monstarlab.signup.viewModel.SignupViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import java.time.Duration
+import kotlinx.android.synthetic.main.layout_loading.view.*
+import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
@@ -24,6 +26,8 @@ class SignupFragment :
         validateEmailInput()
         validatePasswordInput()
         observeInputErrors()
+
+        observeSignupResData()
     }
 
     override fun onClick(view: View?) {
@@ -52,7 +56,38 @@ class SignupFragment :
 
     private fun requestSignupData(email: String, password: String) {
         // call api
-        Toast.makeText(context,"call signup api",Toast.LENGTH_LONG).show()
+        lifecycleScope.launch {
+            viewModel.requestSignupData(email = email, password = password)
+        }
+    }
+
+    private fun observeSignupResData() {
+        viewModel.signupResData.observe(viewLifecycleOwner) {
+            when (it) {
+                is ApiResponse.Error -> {
+                    hideMainLoadingState()
+                }
+                is ApiResponse.ErrorTryAgain -> {
+
+                }
+                is ApiResponse.Loading -> {
+                    showMainLoadingState()
+                }
+                is ApiResponse.Success -> TODO()
+            }
+        }
+    }
+
+    private fun showMainLoadingState() {
+        if (viewBinding.layoutLoading.cns_loading?.visibility != View.VISIBLE) {
+            viewBinding.layoutLoading.cns_loading?.visibility = View.VISIBLE
+            viewBinding.btnCreateAccount.visibility = View.INVISIBLE
+        }
+    }
+
+    private fun hideMainLoadingState() {
+        viewBinding.layoutLoading.cns_loading?.visibility = View.INVISIBLE
+        viewBinding.btnCreateAccount.visibility = View.VISIBLE
     }
 
     private fun validateEmailInput() {
