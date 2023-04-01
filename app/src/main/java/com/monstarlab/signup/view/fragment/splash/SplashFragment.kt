@@ -22,7 +22,7 @@ class SplashFragment :
     override fun initLayout(view: View) {
         super.initLayout(view)
         viewModel.fire{
-            delay(2000)
+            delay(1000)
             //viewModel.navigationCommand.postValue(NavigationCommand.ToActivity(MainActivity::class.java, finishSourceActivity = true))
             viewModel.navigationCommand.postValue(NavigationCommand.ToActivity(SignupActivity::class.java, finishSourceActivity = true))
         }

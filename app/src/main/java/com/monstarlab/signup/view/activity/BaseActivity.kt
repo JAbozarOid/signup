@@ -73,7 +73,7 @@ abstract class BaseActivity<VB : ViewDataBinding, VM : BaseViewModel>(
                 }
             }
         }
-        viewModel.showLoading.observe(this) {
+        /*viewModel.showLoading.observe(this) {
             if (it != null) {
                 runOnUiThread {
                     delay(50)
@@ -85,7 +85,7 @@ abstract class BaseActivity<VB : ViewDataBinding, VM : BaseViewModel>(
                 }
 
             }
-        }
+        }*/
         viewModel.showGreenSnack.observe(this) {
             if (it != null) {
                 viewModel.showSnack.postValue(Pair(it, SnackStatus.GREEN))

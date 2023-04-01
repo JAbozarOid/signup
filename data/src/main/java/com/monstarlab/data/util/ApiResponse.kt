@@ -3,11 +3,11 @@ package com.monstarlab.data.util
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import com.google.gson.reflect.TypeToken
-import com.monstarlab.data.constants.ApiConstants.ERROR_GENERAL_ERROR
-import com.monstarlab.data.constants.ApiConstants.ERROR_MODE_NOT_ADVANCED
-import com.monstarlab.data.constants.ApiConstants.ERROR_NO_NETWORK
-import com.monstarlab.data.constants.ApiConstants.ERROR_NO_SERVER
-import com.monstarlab.data.constants.ApiConstants.ERROR_TIME_OUT
+import com.monstarlab.data.constants.Constants.ERROR_GENERAL_ERROR
+import com.monstarlab.data.constants.Constants.ERROR_MODE_NOT_ADVANCED
+import com.monstarlab.data.constants.Constants.ERROR_NO_NETWORK
+import com.monstarlab.data.constants.Constants.ERROR_NO_SERVER
+import com.monstarlab.data.constants.Constants.ERROR_TIME_OUT
 import retrofit2.Response
 
 
@@ -48,7 +48,6 @@ sealed class ApiResponse<T> {
                 val msg = errorResponse?.asJsonObject?.get("error")?.toString() ?: ""
                 val code = errorResponse?.asJsonObject?.get("code").toString()
                 val errorMsg = if (msg.isNullOrEmpty()) {
-                    // for parsing kuCoin error
                     errorResponse?.asJsonObject?.get("error")?.toString() ?: ""
                 } else {
                     msg
