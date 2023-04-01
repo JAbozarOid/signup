@@ -1,6 +1,8 @@
 package com.monstarlab.signup.constants
 
-object TextConstant {
+object AppConstants {
+
+    const val BASE_UEL = "http://demo4523833.mockable.io"
 
     const val EMAIL_IS_EMPTY = "Your Email is empty!"
     const val PASSWORD_IS_EMPTY = "Password is empty!"

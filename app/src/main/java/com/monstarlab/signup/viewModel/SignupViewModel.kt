@@ -1,18 +1,20 @@
 package com.monstarlab.signup.viewModel
 
-import androidx.lifecycle.viewModelScope
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import com.hadilq.liveevent.LiveEvent
 import com.hadilq.liveevent.LiveEventConfig
+import com.monstarlab.data.entity.signup.SignupDataModel
+import com.monstarlab.data.entity.signup.SignupResultModel
 import com.monstarlab.data.util.ApiResponse
-import com.monstarlab.data.util.NetworkUtil.genericRequestCollect
+import com.monstarlab.data.util.NetworkUtil.safeApiCall
 import com.monstarlab.domain.usecase.SignupUseCase
-import com.monstarlab.signup.constants.TextConstant.EMAIL_IS_EMPTY
-import com.monstarlab.signup.constants.TextConstant.EMAIL_IS_IN_CORRECT
-import com.monstarlab.signup.constants.TextConstant.PASSWORD_IS_EMPTY
-import com.monstarlab.signup.constants.TextConstant.PASSWORD_REGEX
+import com.monstarlab.signup.constants.AppConstants.EMAIL_IS_EMPTY
+import com.monstarlab.signup.constants.AppConstants.EMAIL_IS_IN_CORRECT
+import com.monstarlab.signup.constants.AppConstants.PASSWORD_IS_EMPTY
+import com.monstarlab.signup.constants.AppConstants.PASSWORD_REGEX
 import com.monstarlab.signup.util.AuthUtil
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.delay
 import javax.inject.Inject
 
 @HiltViewModel
@@ -24,6 +26,9 @@ class SignupViewModel @Inject constructor(var signupUseCase: SignupUseCase) : Ba
         LiveEvent(config = LiveEventConfig.PreferFirstObserver)
 
     var signupResData: LiveEvent<ApiResponse<String>> =
+        LiveEvent(config = LiveEventConfig.PreferFirstObserver)
+
+    var signupResLocalData: LiveEvent<String> =
         LiveEvent(config = LiveEventConfig.PreferFirstObserver)
 
     fun isEmailAndPasswordFilled(
@@ -112,14 +117,30 @@ class SignupViewModel @Inject constructor(var signupUseCase: SignupUseCase) : Ba
 
     }
 
-    suspend fun requestSignupData(email: String, password: String) {
-        /*genericRequestCollect(
-            body = { signupUseCase.execute(Unit) as ApiResponse<String> },
-            viewModelScope
-        ) {
-            signupResData.postValue(it)
-        }*/
+    suspend fun requestSignupData(singnupDataModel: SignupDataModel) {
+        signupResData.value =
+            safeApiCall {
+                signupUseCase.execute(singnupDataModel)
+            }
+    }
 
-        signupResData.postValue(ApiResponse.Success("navigate to main activity"))
+    fun parseRemoteResJson(json: String): String {
+        val response = Gson().fromJson<SignupResultModel>(
+            json, object : TypeToken<SignupResultModel>() {}.type
+        )
+        return response.token
+    }
+
+    /**
+     * if mockable was stopped accidentally
+     */
+    fun parseLocalResJson() {
+        val json = "{\n" +
+                "\"token\": \"SomeLongString\"\n" +
+                "}"
+        val response = Gson().fromJson<SignupResultModel>(
+            json, object : TypeToken<SignupResultModel>() {}.type
+        )
+        signupResLocalData.value = response.token
     }
 }

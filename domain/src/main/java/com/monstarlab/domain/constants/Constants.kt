@@ -1,6 +1,6 @@
-package com.monstarlab.data.constants
+package com.monstarlab.domain.constants
 
-object ApiConstants {
+object Constants {
 
     const val ERROR_NO_NETWORK = "No Internet Connection."
     const val ERROR_TIME_OUT = "Response Timeout"

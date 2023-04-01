@@ -46,6 +46,8 @@ ext {
     domainDep = new DependencyList(commonDep)
             .add("com.google.dagger:dagger:2.+", DependencyType.IMPLEMENTATION)
             .add("com.google.dagger:dagger-compiler:2.+", DependencyType.KAPT)
+            .add("com.squareup.retrofit2:converter-gson:${dependencyVersions.retrofit2Gson}")
+            .add("com.squareup.retrofit2:retrofit:2.3.0${dependencyVersions.retrofit}")
     //endregion
 
     //region data

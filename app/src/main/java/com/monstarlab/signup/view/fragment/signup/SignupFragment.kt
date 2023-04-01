@@ -5,9 +5,9 @@ import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import com.monstarlab.data.entity.signup.SignupDataModel
 import com.monstarlab.data.util.ApiResponse
 import com.monstarlab.signup.R
-import com.monstarlab.signup.command.NavigationCommand
 import com.monstarlab.signup.databinding.FragmentSignupBinding
 import com.monstarlab.signup.view.activity.MainActivity
 import com.monstarlab.signup.view.fragment.BaseFragment
@@ -27,11 +27,13 @@ class SignupFragment :
     override fun initLayout(view: View) {
         super.initLayout(view)
         viewBinding.btnCreateAccount.setOnClickListener(this)
+
         validateEmailInput()
         validatePasswordInput()
         observeInputErrors()
 
-        observeSignupResData()
+        observeRemoteSignupResData()
+        observeLocalSingUpResData()
     }
 
     override fun onClick(view: View?) {
@@ -62,32 +64,52 @@ class SignupFragment :
         // call api
         lifecycleScope.launch {
             showMainLoadingState()
-            delay(2000)
-            viewModel.requestSignupData(email = email, password = password)
+            delay(1000)
+            viewModel.requestSignupData(SignupDataModel().apply {
+                this.email = email
+                this.password = password
+            })
         }
     }
 
-    private fun observeSignupResData() {
+    private fun observeRemoteSignupResData() {
         viewModel.signupResData.observe(viewLifecycleOwner) {
             when (it) {
                 is ApiResponse.Error -> {
-                    Toast.makeText(context,"Error", Toast.LENGTH_LONG).show()
                     hideMainLoadingState()
+                    showMessage(it.errorMessage)
+                    viewModel.parseLocalResJson()
                 }
                 is ApiResponse.ErrorTryAgain -> {
-                    Toast.makeText(context,"Error", Toast.LENGTH_LONG).show()
                     hideMainLoadingState()
+                    showMessage(it.errorMessage)
+                    viewModel.parseLocalResJson()
                 }
                 is ApiResponse.Loading -> {
                     showMainLoadingState()
                 }
                 is ApiResponse.Success -> {
-                    Toast.makeText(context,"Success", Toast.LENGTH_LONG).show()
                     hideMainLoadingState()
-                    val intent = Intent(activity,MainActivity::class.java)
-                    activity?.startActivity(intent)
+                    showMessage(viewModel.parseRemoteResJson(it.data))
+                    navigationCommand()
                 }
             }
+        }
+    }
+
+    private fun showMessage(msg: String) {
+        Toast.makeText(context, msg, Toast.LENGTH_LONG).show()
+    }
+
+    private fun navigationCommand() {
+        val intent = Intent(activity, MainActivity::class.java)
+        activity?.startActivity(intent)
+    }
+
+    private fun observeLocalSingUpResData() {
+        viewModel.signupResLocalData.observe(viewLifecycleOwner) {
+            Toast.makeText(context, it, Toast.LENGTH_LONG).show()
+            navigationCommand()
         }
     }
 
