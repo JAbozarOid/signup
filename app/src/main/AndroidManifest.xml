@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.monstarlab.signup">
+    package="com.sample.auth">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
-        android:name=".App"
+        android:name="com.sample.auth.App"
         android:allowBackup="true"
         android:icon="@mipmap/logo"
         android:label="@string/app_name"
@@ -18,7 +18,7 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="n">
         <activity
-            android:name="com.monstarlab.signup.view.activity.SplashActivity"
+            android:name="com.sample.auth.view.activity.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,22 +26,22 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.monstarlab.signup.view.activity.SearchActivity"
+            android:name="com.sample.auth.view.activity.SearchActivity"
             android:exported="false" />
         <activity
-            android:name="com.monstarlab.signup.view.activity.SignupActivity"
+            android:name="com.sample.auth.view.activity.SignupActivity"
             android:exported="false" />
         <activity
-            android:name="com.monstarlab.signup.view.activity.OrderActivity"
+            android:name="com.sample.auth.view.activity.OrderActivity"
             android:exported="false" />
         <activity
-            android:name="com.monstarlab.signup.view.activity.PortfolioActivity"
+            android:name="com.sample.auth.view.activity.PortfolioActivity"
             android:exported="false" />
         <activity
-            android:name="com.monstarlab.signup.view.activity.MainActivity"
+            android:name="com.sample.auth.view.activity.MainActivity"
             android:exported="false" />
         <activity
-            android:name="com.monstarlab.signup.view.activity.VisionActivity"
+            android:name="com.sample.auth.view.activity.VisionActivity"
             android:exported="false" />
     </application>
 
