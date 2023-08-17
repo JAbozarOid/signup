@@ -4,7 +4,7 @@
     <data>
     <variable
         name="viewModel"
-        type="com.monstarlab.signup.viewModel.VisionViewModel" />
+        type="com.sample.auth.viewModel.VisionViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -1,10 +1,13 @@
-# Signup page - Clean Architecture plus MVVM
+# Authentication with Clean Architecture plus MVVM
+This App is developed by Clean Architecture (presentation, domain , data) with advantage of MVVM design pattern
+in the presentation layer.
 
-```
-This page is developed by Clean Architecture (presentation, domain , data) with advantage of MVVM desing pattern
-When user click on acreate account button first fields must be validate. if the email and password validation
-is done successfull, the user navigate main page of the application.
-```
+## Signup page 
+In The signup page when user click on create account button all fields must be validate.
+if both fields validation approved successfully the signup mock api will be call and if the api response was successful, 
+the user navigate to main page of the application.
+
+## SignIn page 
 
 ## Technologies
 - Unit test cases for validation util

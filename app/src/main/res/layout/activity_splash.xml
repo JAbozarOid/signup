@@ -5,7 +5,7 @@
 
         <variable
             name="viewModel"
-            type="com.monstarlab.signup.viewModel.SplashViewModel" />
+            type="com.sample.auth.viewModel.SplashViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

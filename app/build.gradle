@@ -13,9 +13,9 @@ android {
 //
 //        release{
 //            storeFile file("$project.rootDir/config/signapk.jks")
-//            storePassword 'sweet'
-//            keyAlias = 'amir_sweet'
-//            keyPassword = 'sweet0021477191'
+//            storePassword ''
+//            keyAlias = ''
+//            keyPassword = ''
 //        }
 //
 //    }

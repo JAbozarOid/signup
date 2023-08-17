@@ -8,7 +8,7 @@
     <fragment
         tools:layout="@layout/fragment_splash"
         android:id="@+id/fragmentA"
-        android:name="com.monstarlab.signup.view.fragment.splash.SplashFragment"
+        android:name="com.sample.auth.view.fragment.splash.SplashFragment"
         android:label="FragmentA" >
 
     </fragment>
