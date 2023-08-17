@@ -24,7 +24,6 @@ class MainFragment : BaseFragment<FragmentMainBinding, MainViewModel>(R.layout.f
         viewBinding.txtTestB.setOnClickListener {
            viewModel.showSetting()
         }
-        println("SWEET ${this.javaClass.simpleName} created")
 
         viewModel.settingItems.observe(viewLifecycleOwner) {
             settingBottomSheet.show(childFragmentManager, "test")

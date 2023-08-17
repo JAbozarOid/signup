@@ -6,10 +6,12 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.sample.auth.R
+import com.sample.auth.command.NavigationCommand
 import com.sample.auth.databinding.FragmentSignupBinding
 import com.sample.data.entity.signup.SignupDataModel
 import com.sample.data.util.ApiResponse
 import com.sample.auth.view.activity.MainActivity
+import com.sample.auth.view.activity.SigninActivity
 import com.sample.auth.view.fragment.BaseFragment
 import com.sample.auth.viewModel.SignupViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -27,6 +29,7 @@ class SignupFragment :
     override fun initLayout(view: View) {
         super.initLayout(view)
         viewBinding.btnCreateAccount.setOnClickListener(this)
+        viewBinding.tvAlreadyHaveAccount.setOnClickListener(this)
 
         validateEmailInput()
         validatePasswordInput()
@@ -57,6 +60,11 @@ class SignupFragment :
                     }
                 }
             }
+
+            R.id.tvAlreadyHaveAccount -> {
+                val intent = Intent(activity, SigninActivity::class.java)
+                activity?.startActivity(intent)
+            }
         }
     }
 
@@ -80,14 +88,17 @@ class SignupFragment :
                     showMessage(it.errorMessage)
                     viewModel.parseLocalResJson()
                 }
+
                 is ApiResponse.ErrorTryAgain -> {
                     hideMainLoadingState()
                     showMessage(it.errorMessage)
                     viewModel.parseLocalResJson()
                 }
+
                 is ApiResponse.Loading -> {
                     showMainLoadingState()
                 }
+
                 is ApiResponse.Success -> {
                     hideMainLoadingState()
                     showMessage(viewModel.parseRemoteResJson(it.data))

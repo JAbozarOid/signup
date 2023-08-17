@@ -14,6 +14,5 @@ class VisionHomeFragment :
     override val viewModel: VisionViewModel by viewModels()
     override fun initLayout(view: View) {
         super.initLayout(view)
-        println("SWEET ${this.javaClass.simpleName} created")
     }
 }

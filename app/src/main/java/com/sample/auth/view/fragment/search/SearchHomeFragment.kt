@@ -13,6 +13,5 @@ class SearchHomeFragment : BaseFragment<FragmentSplashBinding,SearchViewModel>(R
     override val viewModel: SearchViewModel by viewModels()
     override fun initLayout(view: View) {
         super.initLayout(view)
-        println("SWEET ${this.javaClass.simpleName} created")
     }
 }

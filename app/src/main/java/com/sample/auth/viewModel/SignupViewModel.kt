@@ -4,6 +4,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.hadilq.liveevent.LiveEvent
 import com.hadilq.liveevent.LiveEventConfig
+import com.sample.auth.command.NavigationCommand
 import com.sample.data.entity.signup.SignupDataModel
 import com.sample.data.entity.signup.SignupResultModel
 import com.sample.data.util.ApiResponse
@@ -14,6 +15,8 @@ import com.sample.auth.constants.AppConstants.EMAIL_IS_IN_CORRECT
 import com.sample.auth.constants.AppConstants.PASSWORD_IS_EMPTY
 import com.sample.auth.constants.AppConstants.PASSWORD_REGEX
 import com.sample.auth.util.AuthUtil
+import com.sample.auth.view.activity.SigninActivity
+import com.sample.auth.view.activity.SignupActivity
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -48,6 +51,7 @@ class SignupViewModel @Inject constructor(var signupUseCase: SignupUseCase) : Ba
                 }
                 false
             }
+
             else -> {
                 true
             }
@@ -82,6 +86,7 @@ class SignupViewModel @Inject constructor(var signupUseCase: SignupUseCase) : Ba
                 }
                 false
             }
+
             !AuthUtil.isEmailValid(email.trim()) -> {
                 when (type) {
                     "signup" -> {
@@ -90,6 +95,7 @@ class SignupViewModel @Inject constructor(var signupUseCase: SignupUseCase) : Ba
                 }
                 false
             }
+
             else -> {
                 true
             }
@@ -104,12 +110,14 @@ class SignupViewModel @Inject constructor(var signupUseCase: SignupUseCase) : Ba
                 }
                 false
             }
+
             !AuthUtil.isPasswordValid(password) -> {
                 if (type == "signup") {
                     passwordErrorSignup.value = PASSWORD_REGEX
                 }
                 false
             }
+
             else -> {
                 true
             }

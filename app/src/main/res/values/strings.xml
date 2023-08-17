@@ -14,8 +14,10 @@
     <string name="signup_username">User name (Optional)</string>
     <string name="auth_custom_input_above">Above</string>
     <string name="signup_email">Email</string>
+    <string name="signin_username">Username</string>
     <string name="later">Later</string>
     <string name="create_an_account">Create an Account</string>
+    <string name="signin_to_account">Signin to your Account</string>
     <string name="continue_with_apple">Continue With apple</string>
     <string name="continue_with_facebook">Continue With Facebook</string>
     <string name="continue_with_google">Continue with Google</string>
