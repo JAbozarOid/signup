@@ -8,27 +8,27 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.monstarlab.signup.view.fragment.main.MainFragment"
+        android:name="com.sample.auth.view.fragment.main.MainFragment"
         android:label="MainFragment"
         tools:layout="@layout/fragment_main" />
     <fragment
         android:id="@+id/orderHomeFragment"
-        android:name="com.monstarlab.signup.view.fragment.order.OrderHomeFragment"
+        android:name="com.sample.auth.view.fragment.order.OrderHomeFragment"
         android:label="OrderHomeFragment"
         tools:layout="@layout/fragment_order_home" />
     <fragment
         android:id="@+id/portfolioHomeFragment"
-        android:name="com.monstarlab.signup.view.fragment.portfolio.PortfolioHomeFragment"
+        android:name="com.sample.auth.view.fragment.portfolio.PortfolioHomeFragment"
         android:label="PortfolioHomeFragment"
         tools:layout="@layout/fragment_portfolio_home" />
     <fragment
         android:id="@+id/searchHomeFragment"
-        android:name="com.monstarlab.signup.view.fragment.search.SearchHomeFragment"
+        android:name="com.sample.auth.view.fragment.search.SearchHomeFragment"
         android:label="SearchHomeFragment"
         tools:layout="@layout/fragment_search_home" />
     <fragment
         android:id="@+id/visionHomeFragment"
-        android:name="com.monstarlab.signup.view.fragment.vision.VisionHomeFragment"
+        android:name="com.sample.auth.view.fragment.vision.VisionHomeFragment"
         android:label="VisionHomeFragment"
         tools:layout="@layout/fragment_vision_home" />
 

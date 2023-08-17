@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.monstarlab.signup.viewModel.SignupViewModel" />
+            type="com.sample.auth.viewModel.SignupViewModel" />
     </data>
 
     <ScrollView
@@ -49,7 +49,7 @@
 
                 app:layout_constraintTop_toBottomOf="@+id/imgClose" />
 
-            <com.monstarlab.signup.view.widget.edittext.CustomEditTextWidget
+            <com.sample.auth.view.widget.edittext.CustomEditTextWidget
                 android:id="@+id/edtEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -62,7 +62,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvCreateAccount" />
 
-            <com.monstarlab.signup.view.widget.edittext.CustomEditTextWidget
+            <com.sample.auth.view.widget.edittext.CustomEditTextWidget
                 android:id="@+id/edtPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -75,7 +75,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/edtEmail" />
 
-            <com.monstarlab.signup.view.widget.button.CustomButtonWidget
+            <com.sample.auth.view.widget.button.CustomButtonWidget
                 android:id="@+id/btnCreateAccount"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
