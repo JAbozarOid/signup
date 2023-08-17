@@ -8,9 +8,9 @@ import androidx.appcompat.view.SupportMenuInflater
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.view.forEach
-import com.sample.auth.R
 import com.google.android.material.internal.NavigationMenu
 import com.google.android.material.navigation.NavigationView
+import com.sample.auth.R
 
 class RtlNavigationView : NavigationView {
 

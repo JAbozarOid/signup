@@ -5,10 +5,10 @@ import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import com.sample.data.entity.signup.SignupDataModel
-import com.sample.data.util.ApiResponse
 import com.sample.auth.R
 import com.sample.auth.databinding.FragmentSignupBinding
+import com.sample.data.entity.signup.SignupDataModel
+import com.sample.data.util.ApiResponse
 import com.sample.auth.view.activity.MainActivity
 import com.sample.auth.view.fragment.BaseFragment
 import com.sample.auth.viewModel.SignupViewModel

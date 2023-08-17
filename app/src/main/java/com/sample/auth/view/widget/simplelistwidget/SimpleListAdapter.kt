@@ -7,8 +7,8 @@ import android.view.View
 import android.view.View.VISIBLE
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.sample.auth.R
 import com.google.android.material.button.MaterialButton
+import com.sample.auth.R
 
 class SimpleListAdapter(private val context: Context) :
     RecyclerView.Adapter<SimpleListAdapter.SimpleListViewHolder>() {

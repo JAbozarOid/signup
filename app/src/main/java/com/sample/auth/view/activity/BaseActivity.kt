@@ -9,7 +9,6 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.databinding.library.baseAdapters.BR
 import androidx.lifecycle.lifecycleScope
-import com.sample.auth.R
 import com.sample.auth.util.reset
 import com.sample.auth.util.setSnackColor
 import com.sample.auth.util.setSnackConfig
@@ -17,6 +16,7 @@ import com.sample.auth.view.dialog.LoadingDialog
 import com.sample.auth.view.widget.snack.SnackStatus
 import com.sample.auth.viewModel.BaseViewModel
 import com.google.android.material.snackbar.Snackbar
+import com.sample.auth.R
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.delay

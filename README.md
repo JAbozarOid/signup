@@ -1,4 +1,4 @@
-# Authentication implemented with Clean Architecture plus MVVM
+# Authentication with Clean Architecture plus MVVM
 This App is developed by Clean Architecture (presentation, domain , data) with advantage of MVVM design pattern
 in the presentation layer.
 

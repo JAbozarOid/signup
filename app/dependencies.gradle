@@ -1,7 +1,7 @@
 ext {
 //region android
     android = [
-            applicationId    : "com.example.routine",
+            applicationId    : "com.sample.auth",
             buildToolsVersion: "30.0.2",
             minSdkVersion    : 21,
             compileSdkVersion: 32,
