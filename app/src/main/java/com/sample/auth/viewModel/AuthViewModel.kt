@@ -1,35 +1,52 @@
 package com.sample.auth.viewModel
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.viewModelScope
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.hadilq.liveevent.LiveEvent
 import com.hadilq.liveevent.LiveEventConfig
-import com.sample.auth.command.NavigationCommand
 import com.sample.data.entity.signup.SignupDataModel
 import com.sample.data.entity.signup.SignupResultModel
 import com.sample.data.util.ApiResponse
 import com.sample.data.util.NetworkUtil.safeApiCall
 import com.sample.domain.usecase.SignupUseCase
 import com.sample.auth.constants.AppConstants.EMAIL_IS_EMPTY
-import com.sample.auth.constants.AppConstants.EMAIL_IS_IN_CORRECT
+import com.sample.auth.constants.AppConstants.EMAIL_IS_INCORRECT
 import com.sample.auth.constants.AppConstants.PASSWORD_IS_EMPTY
 import com.sample.auth.constants.AppConstants.PASSWORD_REGEX
+import com.sample.auth.constants.AppConstants.USERNAME_IS_INCORRECT
 import com.sample.auth.util.AuthUtil
-import com.sample.auth.view.activity.SigninActivity
-import com.sample.auth.view.activity.SignupActivity
+import com.sample.data.entity.signin.SignInDataModel
+import com.sample.data.entity.signin.SignInResultModel
+import com.sample.data.repository.SignInRepository
+import com.sample.data.util.GenericResponse
+import com.sample.data.util.NetworkListener
+import com.sample.data.util.NetworkUtil.genericRequestCollect
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class SignupViewModel @Inject constructor(var signupUseCase: SignupUseCase) : BaseViewModel() {
+class AuthViewModel @Inject constructor(
+    private val signupUseCase: SignupUseCase,
+    private val signInRepository: SignInRepository,
+) : BaseViewModel() {
 
     var emailErrorSignup: LiveEvent<String> =
         LiveEvent(config = LiveEventConfig.PreferFirstObserver)
     var passwordErrorSignup: LiveEvent<String> =
         LiveEvent(config = LiveEventConfig.PreferFirstObserver)
 
+    var usernameErrorSignin: LiveEvent<String> =
+        LiveEvent(config = LiveEventConfig.PreferFirstObserver)
+
     var signupResData: LiveEvent<ApiResponse<String>> =
         LiveEvent(config = LiveEventConfig.PreferFirstObserver)
+
+    private var _signInResData: LiveEvent<ApiResponse<GenericResponse<SignInResultModel>>> =
+        LiveEvent(config = LiveEventConfig.PreferFirstObserver)
+    val signInResData: LiveData<ApiResponse<GenericResponse<SignInResultModel>>> get() = _signInResData
+
 
     var signupResLocalData: LiveEvent<String> =
         LiveEvent(config = LiveEventConfig.PreferFirstObserver)
@@ -56,7 +73,15 @@ class SignupViewModel @Inject constructor(var signupUseCase: SignupUseCase) : Ba
                 true
             }
         }
+    }
 
+    fun isUsernameValid(username: String): Boolean {
+        return if (AuthUtil.isUsernameNotEmpty(username))
+            true
+        else {
+            usernameErrorSignin.value = USERNAME_IS_INCORRECT
+            false
+        }
     }
 
     fun isEmailAndPasswordValid(
@@ -64,24 +89,24 @@ class SignupViewModel @Inject constructor(var signupUseCase: SignupUseCase) : Ba
         password: String,
     ): Boolean {
         return if (email.trim().isNotEmpty() || password.trim().isNotEmpty())
-            validateEmail(
+            isEmailValid(
                 email,
                 "signup"
-            ) && validatePassword(
+            ) && isPasswordValid(
                 password,
                 "signup"
             )
         else
-            validateEmail(email, "signup") &&
-                    validatePassword(password, "signup")
+            isEmailValid(email, "signup") &&
+                    isPasswordValid(password, "signup")
     }
 
-    fun validateEmail(email: String, type: String): Boolean {
+    fun isEmailValid(email: String, type: String): Boolean {
         return when {
             email.trim().isEmpty() -> {
                 when (type) {
                     "signup" -> {
-                        emailErrorSignup.value = EMAIL_IS_IN_CORRECT
+                        emailErrorSignup.value = EMAIL_IS_INCORRECT
                     }
                 }
                 false
@@ -90,7 +115,7 @@ class SignupViewModel @Inject constructor(var signupUseCase: SignupUseCase) : Ba
             !AuthUtil.isEmailValid(email.trim()) -> {
                 when (type) {
                     "signup" -> {
-                        emailErrorSignup.value = EMAIL_IS_IN_CORRECT
+                        emailErrorSignup.value = EMAIL_IS_INCORRECT
                     }
                 }
                 false
@@ -102,7 +127,7 @@ class SignupViewModel @Inject constructor(var signupUseCase: SignupUseCase) : Ba
         }
     }
 
-    fun validatePassword(password: String, type: String): Boolean {
+    fun isPasswordValid(password: String, type: String): Boolean {
         return when {
             password.isEmpty() -> {
                 if (type == "signup") {
@@ -130,6 +155,15 @@ class SignupViewModel @Inject constructor(var signupUseCase: SignupUseCase) : Ba
             safeApiCall {
                 signupUseCase.execute(singnupDataModel)
             }
+    }
+
+    fun requestSignInData(signInDataModel: SignInDataModel) {
+        genericRequestCollect(
+            body = { signInRepository.remote.getSignInData(signInDataModel.username) },
+            viewModelScope,
+        ) {
+            _signInResData.postValue(it)
+        }
     }
 
     fun parseRemoteResJson(json: String): String {

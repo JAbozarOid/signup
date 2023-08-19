@@ -1,40 +1,85 @@
 package com.sample.auth.view.fragment.signin
 
 import android.content.Intent
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.sample.auth.R
-import com.sample.auth.command.NavigationCommand
 import com.sample.auth.databinding.FragmentSigninBinding
-import com.sample.auth.databinding.FragmentSignupBinding
-import com.sample.data.entity.signup.SignupDataModel
-import com.sample.data.util.ApiResponse
 import com.sample.auth.view.activity.MainActivity
-import com.sample.auth.view.activity.SigninActivity
-import com.sample.auth.view.activity.SignupActivity
 import com.sample.auth.view.fragment.BaseFragment
-import com.sample.auth.viewModel.SignupViewModel
+import com.sample.auth.viewModel.AuthViewModel
+import com.sample.data.entity.signin.SignInDataModel
+import com.sample.data.util.ApiResponse
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
-class SigninFragment :
-    BaseFragment<FragmentSigninBinding, SignupViewModel>(R.layout.fragment_signin),
+class SigninFragment : BaseFragment<FragmentSigninBinding, AuthViewModel>(R.layout.fragment_signin),
     View.OnClickListener {
 
-    override val viewModel: SignupViewModel by viewModels()
+    override val viewModel: AuthViewModel by viewModels()
 
     override fun initLayout(view: View) {
         super.initLayout(view)
 
+        viewBinding.btnSignIn.setOnClickListener(this)
+        validateUsernameInput()
+        observeUsernameInputErrors()
+        observeRemoteSignInResData()
+    }
+
+    private fun validateUsernameInput() {
+        viewBinding.edtUsername.textFocusLiveData.observe(viewLifecycleOwner) {
+            if (viewModel.isUsernameValid(it)) {
+                viewBinding.edtUsername.inputIsValid(true)
+            }
+        }
+    }
+
+    private fun observeUsernameInputErrors() {
+        viewModel.usernameErrorSignin.observe(viewLifecycleOwner) { error ->
+            viewBinding.edtUsername.inputIsInvalid(errorMsg = error)
+        }
     }
 
     override fun onClick(view: View?) {
         when (view?.id) {
+            R.id.custom_button_btn -> {
+                if (viewModel.isUsernameValid(viewBinding.edtUsername.text)) {
+                    showMainLoadingState()
+                    viewModel.requestSignInData(SignInDataModel().apply {
+                        this.username = viewBinding.edtUsername.text
+                    })
+                }
+            }
+        }
+    }
+
+    private fun observeRemoteSignInResData() {
+        viewModel.signInResData.observe(viewLifecycleOwner) {
+            when (it) {
+                is ApiResponse.Error -> {
+                    hideMainLoadingState()
+                    Log.d("ABOZAR", "error: ${it.errorMessage}")
+                }
+
+                is ApiResponse.ErrorTryAgain -> {
+                    hideMainLoadingState()
+                    Log.d("ABOZAR", "error try: ${it.errorMessage}")
+                }
+
+                is ApiResponse.Loading -> {
+                    showMainLoadingState()
+                }
+
+                is ApiResponse.Success -> {
+                    Log.d("ABOZAR", "success: ${it.data}")
+                }
+            }
         }
     }
 
@@ -50,12 +95,12 @@ class SigninFragment :
     private fun showMainLoadingState() {
         if (viewBinding.loading.visibility != View.VISIBLE) {
             viewBinding.loading.visibility = View.VISIBLE
-            //viewBinding.btnCreateAccount.visibility = View.INVISIBLE
+            viewBinding.btnSignIn.visibility = View.INVISIBLE
         }
     }
 
     private fun hideMainLoadingState() {
         viewBinding.loading.visibility = View.INVISIBLE
-        //viewBinding.btnCreateAccount.visibility = View.VISIBLE
+        viewBinding.btnSignIn.visibility = View.VISIBLE
     }
 }
