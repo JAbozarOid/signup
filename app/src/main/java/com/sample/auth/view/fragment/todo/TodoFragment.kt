@@ -51,12 +51,10 @@ class TodoFragment :
             when (it) {
                 is ApiResponse.Error -> {
                     hideMainLoadingState()
-                    Log.d("ABOZAR", "Error: ${it.errorMessage}")
                 }
 
                 is ApiResponse.ErrorTryAgain -> {
                     hideMainLoadingState()
-                    Log.d("ABOZAR", "Error Try: ${it.errorMessage}")
                 }
 
                 is ApiResponse.Loading -> {
@@ -94,5 +92,7 @@ class TodoFragment :
     private fun hideMainLoadingState() {
         viewBinding.loading.visibility = View.INVISIBLE
         viewBinding.tvLoadingText.visibility = View.GONE
+        viewBinding.tvText.visibility = View.VISIBLE
+        viewBinding.rvTodo.visibility = View.VISIBLE
     }
 }
