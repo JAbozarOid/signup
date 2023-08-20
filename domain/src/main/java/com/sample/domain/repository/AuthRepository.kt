@@ -6,5 +6,5 @@ import retrofit2.Response
 interface AuthRepository {
     suspend fun postSignupData(email: String, password: String): Response<String>
 
-
+    suspend fun getSignInData(username : String) : Response<List<SignInResult>>
 }

@@ -1,8 +1,7 @@
 package com.sample.data.api
 
-import com.google.gson.JsonArray
-import com.google.gson.JsonElement
 import com.sample.data.entity.signin.SignInResultModel
+import com.sample.domain.entity.signin.SignInResult
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
