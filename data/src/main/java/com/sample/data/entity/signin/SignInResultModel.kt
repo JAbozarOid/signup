@@ -1,10 +1,15 @@
 package com.sample.data.entity.signin
 
+import com.google.gson.annotations.SerializedName
 import com.sample.domain.entity.signin.SignInResult
 
 data class SignInResultModel(
-    override val id: Int,
-    override val name: String,
-    override val username: String,
-    override val email: String
-) : SignInResult
+    @SerializedName("id")
+    val id: Int,
+    @SerializedName("name")
+    val name: String,
+    @SerializedName("username")
+    val username: String,
+    @SerializedName("email")
+    val email: String
+)

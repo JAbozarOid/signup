@@ -3,7 +3,7 @@ package com.sample.auth.constants
 object AppConstants {
 
     const val BASE_URL = "http://demo4523833.mockable.io"
-    const val BASE_URL_AUTH = "jsonplaceholder.typicode.com"
+    const val BASE_URL_AUTH = "https://jsonplaceholder.typicode.com"
 
     const val EMAIL_IS_EMPTY = "Your Email is empty!"
     const val PASSWORD_IS_EMPTY = "Password is empty!"

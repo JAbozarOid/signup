@@ -3,6 +3,9 @@ package com.sample.auth.viewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import com.google.gson.Gson
+import com.google.gson.JsonArray
+import com.google.gson.JsonElement
+import com.google.gson.JsonPrimitive
 import com.google.gson.reflect.TypeToken
 import com.hadilq.liveevent.LiveEvent
 import com.hadilq.liveevent.LiveEventConfig
@@ -43,9 +46,9 @@ class AuthViewModel @Inject constructor(
     var signupResData: LiveEvent<ApiResponse<String>> =
         LiveEvent(config = LiveEventConfig.PreferFirstObserver)
 
-    private var _signInResData: LiveEvent<ApiResponse<GenericResponse<SignInResultModel>>> =
+    private var _signInResData: LiveEvent<ApiResponse<List<SignInResultModel>>> =
         LiveEvent(config = LiveEventConfig.PreferFirstObserver)
-    val signInResData: LiveData<ApiResponse<GenericResponse<SignInResultModel>>> get() = _signInResData
+    val signInResData: LiveData<ApiResponse<List<SignInResultModel>>> get() = _signInResData
 
 
     var signupResLocalData: LiveEvent<String> =
