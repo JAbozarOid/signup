@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.sample.auth.R
 import com.sample.data.entity.todo.TodoResultModel
@@ -33,6 +34,17 @@ class TodoAdapter internal constructor(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val model = mData[position]
         holder.tvTitle.text = model.title
+
+        holder.tvStatus.apply {
+            if (model.completed) {
+                this.text = "Completed"
+                this.setTextColor(ContextCompat.getColor(context, R.color.green500))
+            } else {
+                this.text = "Not Completed"
+                this.setTextColor(ContextCompat.getColor(context, R.color.red500))
+            }
+        }
+
     }
 
     // total number of rows
@@ -44,9 +56,12 @@ class TodoAdapter internal constructor(
     inner class ViewHolder internal constructor(itemView: View) : RecyclerView.ViewHolder(itemView),
         View.OnClickListener {
         var tvTitle: TextView
+        var tvStatus: TextView
 
         init {
             tvTitle = itemView.findViewById<TextView>(R.id.tvTodoTitle)
+            tvStatus = itemView.findViewById<TextView>(R.id.tvTodoStatus)
+
             itemView.setOnClickListener(this)
         }
 
