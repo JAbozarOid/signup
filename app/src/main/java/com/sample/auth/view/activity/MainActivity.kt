@@ -23,7 +23,6 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(R.layout.a
     override fun onCreated() {
         super.onCreated()
         configureBottomNavigation()
-        println("SWEET ${this.javaClass.simpleName} created")
     }
 
     private fun configureBottomNavigation() {

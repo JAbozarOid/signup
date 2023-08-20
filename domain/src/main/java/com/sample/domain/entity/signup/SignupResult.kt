@@ -1,4 +1,4 @@
-package com.sample.domain.entity
+package com.sample.domain.entity.signup
 
 interface SignupResult {
 

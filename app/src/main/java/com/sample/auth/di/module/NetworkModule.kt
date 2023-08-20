@@ -1,8 +1,8 @@
 package com.sample.auth.di.module
 
 import com.sample.data.api.RetrofitHelper
-import com.sample.data.api.SignupApi
-import com.sample.auth.constants.AppConstants.BASE_UEL
+import com.sample.data.api.AuthApi
+import com.sample.auth.constants.AppConstants.BASE_URL
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,13 +19,13 @@ class NetworkModule {
         //interceptorsMap: Map<Int, @JvmSuppressWildcards Interceptor>
     ): Retrofit {
         return RetrofitHelper.createRetrofit(
-            BASE_UEL,
+            BASE_URL,
             //interceptorMap = interceptorsMap
         )
     }
 
     @Provides
-    fun provideSignupApi(retroFit: Retrofit): SignupApi {
-        return retroFit.create(SignupApi::class.java)
+    fun provideSignupApi(retroFit: Retrofit): AuthApi {
+        return retroFit.create(AuthApi::class.java)
     }
 }

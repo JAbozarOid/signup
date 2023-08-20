@@ -52,6 +52,10 @@ object AuthUtil {
         return !(email.isEmpty() || password.isEmpty())
     }
 
+    fun isUsernameNotEmpty(username : String) : Boolean {
+        return username.isNotEmpty()
+    }
+
     // this method just check emptiness
     fun isUsernameValid(username: String): Boolean {
         return Pattern.compile(
