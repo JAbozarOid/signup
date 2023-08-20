@@ -65,13 +65,11 @@ class SigninFragment : BaseFragment<FragmentSigninBinding, AuthViewModel>(R.layo
             when (it) {
                 is ApiResponse.Error -> {
                     hideMainLoadingState()
-                    Log.d("ABOZAR", "error: ${it.errorMessage}")
                     showMessage(it.errorMessage)
                 }
 
                 is ApiResponse.ErrorTryAgain -> {
                     hideMainLoadingState()
-                    Log.d("ABOZAR", "error try: ${it.errorMessage}")
                     showMessage(it.errorMessage)
                 }
 
@@ -81,11 +79,9 @@ class SigninFragment : BaseFragment<FragmentSigninBinding, AuthViewModel>(R.layo
 
                 is ApiResponse.Success -> {
                     hideMainLoadingState()
-                    Log.d("ABOZAR", "success: ${it.data}")
                     if (it.data.isEmpty()) {
                         showMessage("User Not found")
                     } else {
-                        showMessage(it.data[0].username)
                         navigationCommand(id = it.data[0].id)
                     }
                 }
