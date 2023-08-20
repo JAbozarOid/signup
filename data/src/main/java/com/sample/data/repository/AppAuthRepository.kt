@@ -1,8 +1,7 @@
 package com.sample.data.repository
 
-import com.sample.data.api.AuthApi
-import com.sample.data.api.SignInApi
-import com.sample.data.entity.signin.SignInResultModel
+import com.sample.data.api.auth.AuthApi
+import com.sample.data.api.signin.SignInApi
 import com.sample.domain.entity.signin.SignInResult
 import com.sample.domain.repository.AuthRepository
 import retrofit2.Response

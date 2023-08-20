@@ -1,4 +1,4 @@
-package com.sample.data.api
+package com.sample.data.api.helper
 
 import com.sample.data.BuildConfig
 import okhttp3.CertificatePinner

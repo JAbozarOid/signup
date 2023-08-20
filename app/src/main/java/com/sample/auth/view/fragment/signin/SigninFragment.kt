@@ -86,7 +86,7 @@ class SigninFragment : BaseFragment<FragmentSigninBinding, AuthViewModel>(R.layo
                         showMessage("User Not found")
                     } else {
                         showMessage(it.data[0].username)
-                        navigationCommand()
+                        navigationCommand(id = it.data[0].id)
                     }
                 }
             }
@@ -97,8 +97,9 @@ class SigninFragment : BaseFragment<FragmentSigninBinding, AuthViewModel>(R.layo
         Toast.makeText(context, msg, Toast.LENGTH_LONG).show()
     }
 
-    private fun navigationCommand() {
+    private fun navigationCommand(id : Int) {
         val intent = Intent(activity, TodoActivity::class.java)
+        intent.putExtra("id",id)
         activity?.startActivity(intent)
         activity?.finish()
     }

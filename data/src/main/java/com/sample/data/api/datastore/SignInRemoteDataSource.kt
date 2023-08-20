@@ -1,5 +1,6 @@
-package com.sample.data.api
+package com.sample.data.api.datastore
 
+import com.sample.data.api.signin.SignInApi
 import com.sample.data.util.NetworkUtil.safeApiCall
 import javax.inject.Inject
 
