@@ -9,6 +9,7 @@ import androidx.lifecycle.lifecycleScope
 import com.sample.auth.R
 import com.sample.auth.databinding.FragmentSigninBinding
 import com.sample.auth.view.activity.MainActivity
+import com.sample.auth.view.activity.TodoActivity
 import com.sample.auth.view.fragment.BaseFragment
 import com.sample.auth.viewModel.AuthViewModel
 import com.sample.data.entity.signin.SignInDataModel
@@ -81,10 +82,11 @@ class SigninFragment : BaseFragment<FragmentSigninBinding, AuthViewModel>(R.layo
                 is ApiResponse.Success -> {
                     hideMainLoadingState()
                     Log.d("ABOZAR", "success: ${it.data}")
-                    if(it.data.isEmpty()){
-                       showMessage("User Not found")
-                    }else {
+                    if (it.data.isEmpty()) {
+                        showMessage("User Not found")
+                    } else {
                         showMessage(it.data[0].username)
+                        navigationCommand()
                     }
                 }
             }
@@ -96,8 +98,9 @@ class SigninFragment : BaseFragment<FragmentSigninBinding, AuthViewModel>(R.layo
     }
 
     private fun navigationCommand() {
-        val intent = Intent(activity, MainActivity::class.java)
+        val intent = Intent(activity, TodoActivity::class.java)
         activity?.startActivity(intent)
+        activity?.finish()
     }
 
     private fun showMainLoadingState() {
