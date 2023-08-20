@@ -1,4 +1,4 @@
-package com.sample.data.api
+package com.sample.data.api.signin
 
 import com.sample.data.entity.signin.SignInResultModel
 import com.sample.domain.entity.signin.SignInResult

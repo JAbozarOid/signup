@@ -1,6 +1,6 @@
 package com.sample.data.repository
 
-import com.sample.data.api.SignInRemoteDataSource
+import com.sample.data.api.datastore.SignInRemoteDataSource
 import javax.inject.Inject
 
 class SignInRepository @Inject constructor(

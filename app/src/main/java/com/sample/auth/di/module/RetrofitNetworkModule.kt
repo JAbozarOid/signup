@@ -1,7 +1,8 @@
 package com.sample.auth.di.module
 
 import com.sample.auth.constants.AppConstants.BASE_URL_AUTH
-import com.sample.data.api.SignInApi
+import com.sample.data.api.signin.SignInApi
+import com.sample.data.api.todo.TodoApi
 import com.sample.data.util.LiveDataCallAdapterFactory
 import com.sample.data.util.TokenInterceptor
 import dagger.Module
@@ -72,6 +73,14 @@ object RetrofitNetworkModule {
         @CloudRetrofit retrofit: Retrofit
     ): SignInApi {
         return retrofit.create(SignInApi::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideTodoApi(
+        @CloudRetrofit retrofit: Retrofit
+    ): TodoApi {
+        return retrofit.create(TodoApi::class.java)
     }
 
 }
