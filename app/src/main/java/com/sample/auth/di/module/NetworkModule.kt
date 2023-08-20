@@ -1,7 +1,7 @@
 package com.sample.auth.di.module
 
-import com.sample.data.api.RetrofitHelper
-import com.sample.data.api.AuthApi
+import com.sample.data.api.helper.RetrofitHelper
+import com.sample.data.api.auth.AuthApi
 import com.sample.auth.constants.AppConstants.BASE_URL
 import dagger.Module
 import dagger.Provides
