@@ -3,17 +3,9 @@ package com.sample.auth.viewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import com.google.gson.Gson
-import com.google.gson.JsonArray
-import com.google.gson.JsonElement
-import com.google.gson.JsonPrimitive
 import com.google.gson.reflect.TypeToken
 import com.hadilq.liveevent.LiveEvent
 import com.hadilq.liveevent.LiveEventConfig
-import com.sample.data.entity.signup.SignupDataModel
-import com.sample.data.entity.signup.SignupResultModel
-import com.sample.data.util.ApiResponse
-import com.sample.data.util.NetworkUtil.safeApiCall
-import com.sample.domain.usecase.SignupUseCase
 import com.sample.auth.constants.AppConstants.EMAIL_IS_EMPTY
 import com.sample.auth.constants.AppConstants.EMAIL_IS_INCORRECT
 import com.sample.auth.constants.AppConstants.PASSWORD_IS_EMPTY
@@ -22,17 +14,21 @@ import com.sample.auth.constants.AppConstants.USERNAME_IS_INCORRECT
 import com.sample.auth.util.AuthUtil
 import com.sample.data.entity.signin.SignInDataModel
 import com.sample.data.entity.signin.SignInResultModel
-import com.sample.data.repository.SignInRepository
-import com.sample.data.util.GenericResponse
-import com.sample.data.util.NetworkListener
-import com.sample.data.util.NetworkUtil.genericRequestCollect
+import com.sample.data.entity.signup.SignupDataModel
+import com.sample.data.entity.signup.SignupResultModel
+import com.sample.data.util.ApiResponse
+import com.sample.data.util.NetworkUtil.safeApiCall
+import com.sample.domain.usecase.SignInUseCase
+import com.sample.domain.usecase.SignupUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
+import retrofit2.Response
 import javax.inject.Inject
 
 @HiltViewModel
 class AuthViewModel @Inject constructor(
     private val signupUseCase: SignupUseCase,
-    private val signInRepository: SignInRepository,
+    private val signInUseCase: SignInUseCase
 ) : BaseViewModel() {
 
     var emailErrorSignup: LiveEvent<String> =
@@ -161,11 +157,10 @@ class AuthViewModel @Inject constructor(
     }
 
     fun requestSignInData(signInDataModel: SignInDataModel) {
-        genericRequestCollect(
-            body = { signInRepository.remote.getSignInData(signInDataModel.username) },
-            viewModelScope,
-        ) {
-            _signInResData.postValue(it)
+        viewModelScope.launch {
+            _signInResData.value = safeApiCall {
+                signInUseCase.execute(signInDataModel) as Response<List<SignInResultModel>>
+            }
         }
     }
 
