@@ -3,5 +3,6 @@
     <base-config cleartextTrafficPermitted="true" />
     <domain-config cleartextTrafficPermitted="true">
         <domain includeSubdomains="true">http://demo4523833.mockable.io</domain>
+        <domain includeSubdomains="true">http://jsonplaceholder.typicode.com</domain>
     </domain-config>
 </network-security-config>
