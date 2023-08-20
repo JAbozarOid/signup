@@ -17,6 +17,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_gravity="center"
             android:padding="16dp">
 
             <ImageView
@@ -41,7 +42,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="36dp"
                 android:gravity="center"
-                android:text="@string/create_an_account"
+                android:text="@string/signin_to_account"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -50,54 +51,30 @@
                 app:layout_constraintTop_toBottomOf="@+id/imgClose" />
 
             <com.sample.auth.view.widget.edittext.CustomEditTextWidget
-                android:id="@+id/edtEmail"
+                android:id="@+id/edtUsername"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="36dp"
                 app:background="@drawable/shape_state_success"
-                app:hintText="@string/signup_email"
-                app:imageType="@drawable/ic_auth_at"
+                app:hintText="@string/signin_username"
+                app:imageType="@drawable/ic_person"
                 app:inputType="email"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvCreateAccount" />
 
-            <com.sample.auth.view.widget.edittext.CustomEditTextWidget
-                android:id="@+id/edtPassword"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                app:background="@drawable/shape_state_success"
-                app:hintText="password"
-                app:imageType="@drawable/ic_auth_lock"
-                app:inputType="password"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/edtEmail" />
-
             <com.sample.auth.view.widget.button.CustomButtonWidget
-                android:id="@+id/btnCreateAccount"
+                android:id="@+id/btnSignIn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="36dp"
                 android:textSize="36sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/edtPassword"
-                app:text="Create an Account" />
+                app:layout_constraintTop_toBottomOf="@+id/edtUsername"
+                app:text="Signin"
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvAlreadyHaveAccount"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="36dp"
-                android:gravity="center"
-                android:text="Already have an account?"
-                android:textColor="@color/base700"
-                android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/btnCreateAccount" />
+                />
 
             <View
                 android:id="@+id/line"
@@ -107,34 +84,7 @@
                 android:background="@color/base700"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvAlreadyHaveAccount" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnGoogle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="36dp"
-                android:background="@drawable/shape_state_idle"
-                android:text="@string/continue_with_google"
-                app:layout_constraintTop_toBottomOf="@+id/line" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnFacebook"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:background="@drawable/shape_state_idle"
-                android:text="@string/continue_with_facebook"
-                app:layout_constraintTop_toBottomOf="@+id/btnGoogle" />
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnApple"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:background="@drawable/shape_state_idle"
-                android:text="@string/continue_with_apple"
-                app:layout_constraintTop_toBottomOf="@+id/btnFacebook" />
+                app:layout_constraintTop_toBottomOf="@+id/btnSignIn" />
 
             <ProgressBar
                 android:id="@+id/loading"

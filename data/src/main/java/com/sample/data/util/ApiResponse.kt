@@ -29,14 +29,14 @@ sealed class ApiResponse<T> {
                 }
                 else -> {
                     ERROR_GENERAL_ERROR
-                }
-            }
-            return ErrorTryAgain(
-                errorMessage = errorMessage
-            )
         }
+    }
+    return ErrorTryAgain(
+    errorMessage = errorMessage
+    )
+}
 
-        fun <T> create(response: Response<T>): ApiResponse<T> {
+fun <T> create(response: Response<T>): ApiResponse<T> {
             if (response.isSuccessful) {
                 val body = response.body()
                 return Success(data = body!!)

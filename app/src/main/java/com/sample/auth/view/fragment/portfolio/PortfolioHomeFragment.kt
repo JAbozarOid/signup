@@ -15,7 +15,6 @@ class PortfolioHomeFragment :
     override val viewModel: PortfolioViewModel by viewModels()
     override fun initLayout(view: View) {
         super.initLayout(view)
-        println("SWEET ${this.javaClass.simpleName} created")
     }
 
 }

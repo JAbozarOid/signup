@@ -32,6 +32,9 @@
             android:name="com.sample.auth.view.activity.SignupActivity"
             android:exported="false" />
         <activity
+            android:name="com.sample.auth.view.activity.SigninActivity"
+            android:exported="false" />
+        <activity
             android:name="com.sample.auth.view.activity.OrderActivity"
             android:exported="false" />
         <activity

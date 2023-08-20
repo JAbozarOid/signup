@@ -10,8 +10,9 @@ import com.sample.auth.databinding.FragmentSignupBinding
 import com.sample.data.entity.signup.SignupDataModel
 import com.sample.data.util.ApiResponse
 import com.sample.auth.view.activity.MainActivity
+import com.sample.auth.view.activity.SigninActivity
 import com.sample.auth.view.fragment.BaseFragment
-import com.sample.auth.viewModel.SignupViewModel
+import com.sample.auth.viewModel.AuthViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -19,14 +20,15 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class SignupFragment :
-    BaseFragment<FragmentSignupBinding, SignupViewModel>(R.layout.fragment_signup),
+    BaseFragment<FragmentSignupBinding, AuthViewModel>(R.layout.fragment_signup),
     View.OnClickListener {
 
-    override val viewModel: SignupViewModel by viewModels()
+    override val viewModel: AuthViewModel by viewModels()
 
     override fun initLayout(view: View) {
         super.initLayout(view)
         viewBinding.btnCreateAccount.setOnClickListener(this)
+        viewBinding.tvAlreadyHaveAccount.setOnClickListener(this)
 
         validateEmailInput()
         validatePasswordInput()
@@ -57,6 +59,11 @@ class SignupFragment :
                     }
                 }
             }
+
+            R.id.tvAlreadyHaveAccount -> {
+                val intent = Intent(activity, SigninActivity::class.java)
+                activity?.startActivity(intent)
+            }
         }
     }
 
@@ -80,14 +87,17 @@ class SignupFragment :
                     showMessage(it.errorMessage)
                     viewModel.parseLocalResJson()
                 }
+
                 is ApiResponse.ErrorTryAgain -> {
                     hideMainLoadingState()
                     showMessage(it.errorMessage)
                     viewModel.parseLocalResJson()
                 }
+
                 is ApiResponse.Loading -> {
                     showMainLoadingState()
                 }
+
                 is ApiResponse.Success -> {
                     hideMainLoadingState()
                     showMessage(viewModel.parseRemoteResJson(it.data))
@@ -127,7 +137,7 @@ class SignupFragment :
 
     private fun validateEmailInput() {
         viewBinding.edtEmail.textFocusLiveData.observe(viewLifecycleOwner) {
-            if (viewModel.validateEmail(it, "signup")) {
+            if (viewModel.isEmailValid(it, "signup")) {
                 viewBinding.edtEmail.inputIsValid(true)
             }
         }
@@ -135,7 +145,7 @@ class SignupFragment :
 
     private fun validatePasswordInput() {
         viewBinding.edtPassword.textFocusLiveData.observe(viewLifecycleOwner) {
-            if (viewModel.validatePassword(it, "signup")) {
+            if (viewModel.isPasswordValid(it, "signup")) {
                 viewBinding.edtPassword.inputIsValid(true)
             }
         }
