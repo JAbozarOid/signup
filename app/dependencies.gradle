@@ -87,6 +87,7 @@ ext {
             .add("com.github.pwittchen:reactivenetwork-rx2:3.0.8")
             .add("com.squareup.retrofit2:converter-scalars:2.1.0")
             .add("com.squareup.okhttp3:logging-interceptor:4.9.0")
+            .add("androidx.recyclerview:recyclerview:1.2.1")
 
     //endregion
 
